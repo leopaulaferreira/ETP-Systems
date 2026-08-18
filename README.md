@@ -21,7 +21,7 @@ O objetivo é tornar o aprendizado corporativo **mais acessível, organizado e a
 
 ---
 
-# 🎯 Objetivos do Projeto
+# 🎯 Objetivos do Projeto"!"
 
 - Fortalecer a **capacitação interna** dos colaboradores  
 - Oferecer **trilhas de aprendizado estruturadas**  
