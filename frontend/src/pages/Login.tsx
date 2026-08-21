@@ -1,12 +1,11 @@
 import { type FormEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Building2, Eye, EyeOff, Globe, Lock, Mail, ShieldCheck, User } from 'lucide-react'
-import Logo from '../components/Logo'
+import { Building2, ChevronDown, Eye, EyeOff, Globe, Lock, Mail, ShieldCheck, User } from 'lucide-react'
 import Button from '../components/ui/Button'
 import Input from '../components/ui/Input'
 import Checkbox from '../components/ui/Checkbox'
-import { GoogleIcon, LinkedInIcon, MicrosoftIcon } from '../components/BrandIcons'
-import heroImage from '../assets/login-hero.webp'
+import { GoogleIcon, MicrosoftIcon } from '../components/BrandIcons'
+import loginBg from '../assets/login-bg.png'
 
 type AccountType = 'colaborador' | 'empresa'
 
@@ -42,200 +41,185 @@ export default function Login() {
   }
 
   return (
-    <div className="flex h-screen w-full bg-white">
-      {/* Painel de marca */}
-      <div className="relative hidden h-full w-[47%] flex-col justify-between overflow-hidden bg-[#010826] px-14 py-12 text-white lg:flex">
-        <img
-          src={heroImage}
-          alt=""
-          className="absolute inset-0 h-full w-full object-cover object-bottom"
-          draggable={false}
-        />
+    <div className="relative flex h-screen w-full overflow-hidden bg-[#0b0f2c]">
+      <img
+        src={loginBg}
+        alt=""
+        className="absolute inset-0 h-full w-full object-cover object-[left_top]"
+        draggable={false}
+      />
 
-        <div className="relative z-10 flex flex-col gap-4">
-          <Logo variant="light" />
+      <div className="relative z-10 flex h-full w-full">
+        {/* Painel de marca */}
+        <div className="relative hidden h-full flex-col justify-between overflow-hidden px-12 py-12 lg:flex lg:w-[55%] xl:px-20 xl:py-16">
+          <div className="relative z-10" />
 
-          <div className="mt-4 flex flex-col gap-4">
-            <h1 className="text-4xl font-bold leading-tight text-balance">
+          <div className="relative z-10 -mt-7 flex max-w-xl flex-col gap-5">
+            <span className="inline-flex w-fit items-center rounded-full border border-cyan-200/25 bg-white/[0.06] px-4 py-1.5 text-sm text-white backdrop-blur-sm">
+              Conhecimento para avançar.
+            </span>
+            <h1 className="text-4xl font-bold leading-tight text-white text-balance xl:text-5xl">
               Impulsione sua carreira com{' '}
-              <span className="bg-gradient-to-r from-brand-cyan-400 to-brand-blue-500 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-white via-cyan-200 to-brand-cyan-400 bg-clip-text text-transparent drop-shadow-[0_0_22px_rgba(34,195,238,0.55)]">
                 conhecimento que transforma.
               </span>
             </h1>
-            <p className="max-w-md text-[15px] leading-relaxed text-white/70">
-              Plataforma completa para desenvolver
-              <br />
-              habilidades, conquistar certificações
-              <br />
-              e acelerar resultados.
+            <p className="max-w-md text-[15px] leading-relaxed text-white">
+              Plataforma completa para desenvolver habilidades, conquistar certificações e acelerar
+              resultados.
             </p>
           </div>
-        </div>
 
-        <div className="relative z-10 flex flex-col gap-5">
-          <div className="flex items-center gap-10">
-            <Stat value="+12 mil" label="Alunos ativos" />
-            <Stat value="+300" label="Cursos e trilhas" />
-            <Stat value="+120" label="Empresas parceiras" />
-          </div>
-          <div className="flex items-center gap-2 text-xs text-white/60">
+          <div className="relative z-10 flex items-center gap-2 text-xs text-white">
             <ShieldCheck className="h-4 w-4 text-brand-cyan-400" />
             Ambiente seguro e confiável para seu aprendizado.
           </div>
         </div>
-      </div>
 
-      {/* Painel de autenticação */}
-      <div className="flex h-full w-full flex-1 flex-col overflow-y-auto bg-surface lg:bg-white">
-        <div className="flex justify-end px-6 pt-6 lg:px-10">
-          <button
-            type="button"
-            className="flex items-center gap-1.5 rounded-lg px-2 py-1.5 text-sm text-ink-500 hover:bg-ink-100"
-          >
-            <Globe className="h-4 w-4" />
-            Português
-          </button>
-        </div>
+        {/* Painel de autenticação */}
+        <div className="flex h-full w-full flex-1 flex-col overflow-y-auto">
+          <div className="flex items-center justify-end px-6 pt-6 lg:px-10">
+            <button
+              type="button"
+              className="flex items-center gap-1.5 rounded-lg border border-white/15 bg-white/[0.05] px-3 py-1.5 text-sm font-medium text-white/80 backdrop-blur-sm transition-colors hover:bg-white/10"
+            >
+              <Globe className="h-4 w-4 text-white/50" />
+              Português
+              <ChevronDown className="h-3.5 w-3.5 text-white/40" />
+            </button>
+          </div>
 
-        <div className="flex flex-1 items-center justify-center px-6 py-8">
-          <div className="w-full max-w-md rounded-2xl border border-ink-100 bg-white p-8 shadow-card">
-            <div className="mb-6 flex flex-col gap-1.5 text-center">
-              <h2 className="text-2xl font-bold text-ink-900">Bem-vindo(a) de volta!</h2>
-              <p className="text-sm text-ink-500">Faça login para continuar aprendendo.</p>
-            </div>
-
-            <div className="mb-6 grid grid-cols-2 gap-2 rounded-xl bg-surface-alt p-1.5">
-              <button
-                type="button"
-                onClick={() => setAccountType('colaborador')}
-                className={`flex flex-col items-center gap-1 rounded-lg px-3 py-2.5 text-xs font-semibold transition-colors ${
-                  accountType === 'colaborador'
-                    ? 'bg-white text-brand-blue-700 shadow-sm ring-1 ring-brand-blue-500'
-                    : 'text-ink-500 hover:text-ink-700'
-                }`}
-              >
-                <User className="h-4 w-4" />
-                Sou colaborador
-                <span className="font-normal text-[11px] text-ink-400">Acessar minha conta</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => setAccountType('empresa')}
-                className={`flex flex-col items-center gap-1 rounded-lg px-3 py-2.5 text-xs font-semibold transition-colors ${
-                  accountType === 'empresa'
-                    ? 'bg-white text-brand-blue-700 shadow-sm ring-1 ring-brand-blue-500'
-                    : 'text-ink-500 hover:text-ink-700'
-                }`}
-              >
-                <Building2 className="h-4 w-4" />
-                Sou empresa / RH
-                <span className="font-normal text-[11px] text-ink-400">Acessar como empresa</span>
-              </button>
-            </div>
-
-            <form className="flex flex-col gap-4" onSubmit={handleSubmit} noValidate>
-              <Input
-                id="email"
-                label="E-mail ou login"
-                type="email"
-                placeholder="seu@email.com"
-                icon={<Mail className="h-4 w-4" />}
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-                error={errors.email}
-                autoComplete="username"
-              />
-
-              <Input
-                id="password"
-                label="Senha"
-                type={showPassword ? 'text' : 'password'}
-                placeholder="••••••••••"
-                icon={<Lock className="h-4 w-4" />}
-                value={password}
-                onChange={(event) => setPassword(event.target.value)}
-                error={errors.password}
-                autoComplete="current-password"
-                trailing={
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword((value) => !value)}
-                    className="text-ink-400 hover:text-ink-600"
-                    aria-label={showPassword ? 'Ocultar senha' : 'Mostrar senha'}
-                  >
-                    {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                  </button>
-                }
-              />
-
-              <div className="flex items-center justify-between">
-                <Checkbox
-                  id="remember"
-                  label="Lembrar de mim"
-                  checked={rememberMe}
-                  onChange={(event) => setRememberMe(event.target.checked)}
-                />
-                <a href="#" className="text-sm font-medium text-brand-blue-600 hover:underline">
-                  Esqueci minha senha
-                </a>
+          <div className="flex flex-1 flex-col items-center justify-center gap-4 px-6 py-8 lg:items-start lg:pl-6 lg:pr-6 xl:pl-14 xl:pr-10">
+            <div className="w-full max-w-[408px] rounded-lg bg-white/10 p-8 shadow-[0_24px_70px_-24px_rgba(0,0,0,0.65)] backdrop-blur-2xl backdrop-saturate-150">
+              <div className="mb-6 flex flex-col gap-1.5 text-center">
+                <h2 className="text-3xl font-bold text-white">Continue sua jornada</h2>
+                <p className="text-sm text-white/75">Entre para continuar aprendendo.</p>
               </div>
 
-              <Button type="submit" loading={loading} className="mt-1 w-full">
-                {!loading && (
-                  <>
-                    Entrar na plataforma
-                    <span aria-hidden="true">→</span>
-                  </>
-                )}
-              </Button>
-            </form>
+              <div className="mb-6 grid grid-cols-2 gap-1.5 rounded-xl border border-white/10 bg-white/[0.04] p-1">
+                <button
+                  type="button"
+                  onClick={() => setAccountType('colaborador')}
+                  className={`flex flex-col items-center justify-center gap-0.5 rounded-lg px-2 py-2 text-[11px] font-medium leading-tight transition-colors sm:flex-row sm:gap-1 sm:px-1.5 sm:text-[13px] ${
+                    accountType === 'colaborador'
+                      ? 'bg-gradient-to-r from-brand-blue-600 to-brand-cyan-500 text-white shadow-sm'
+                      : 'text-white/75 hover:text-white/95'
+                  }`}
+                >
+                  <User className="h-4 w-4 shrink-0" />
+                  Sou colaborador
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setAccountType('empresa')}
+                  className={`flex flex-col items-center justify-center gap-0.5 rounded-lg px-2 py-2 text-[11px] font-medium leading-tight transition-colors sm:flex-row sm:gap-1 sm:px-1.5 sm:text-[13px] ${
+                    accountType === 'empresa'
+                      ? 'bg-gradient-to-r from-brand-blue-600 to-brand-cyan-500 text-white shadow-sm'
+                      : 'text-white/75 hover:text-white/95'
+                  }`}
+                >
+                  <Building2 className="h-4 w-4 shrink-0" />
+                  Sou empresa / RH
+                </button>
+              </div>
 
-            <div className="my-6 flex items-center gap-3">
-              <div className="h-px flex-1 bg-ink-200" />
-              <span className="text-xs text-ink-400">ou continue com</span>
-              <div className="h-px flex-1 bg-ink-200" />
+              <form className="flex flex-col gap-4" onSubmit={handleSubmit} noValidate>
+                <Input
+                  id="email"
+                  label="E-mail ou login"
+                  type="email"
+                  placeholder="seu@email.com"
+                  icon={<Mail className="h-4 w-4" />}
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
+                  error={errors.email}
+                  autoComplete="username"
+                  tone="dark"
+                />
+
+                <Input
+                  id="password"
+                  label="Senha"
+                  type={showPassword ? 'text' : 'password'}
+                  placeholder="••••••••••"
+                  icon={<Lock className="h-4 w-4" />}
+                  value={password}
+                  onChange={(event) => setPassword(event.target.value)}
+                  error={errors.password}
+                  autoComplete="current-password"
+                  tone="dark"
+                  trailing={
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword((value) => !value)}
+                      className="text-white/50 hover:text-white/90"
+                      aria-label={showPassword ? 'Ocultar senha' : 'Mostrar senha'}
+                    >
+                      {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                    </button>
+                  }
+                />
+
+                <div className="flex items-center justify-between">
+                  <Checkbox
+                    id="remember"
+                    label="Lembrar de mim"
+                    checked={rememberMe}
+                    onChange={(event) => setRememberMe(event.target.checked)}
+                    tone="dark"
+                  />
+                  <a href="#" className="text-sm font-medium text-brand-cyan-400 hover:text-white hover:underline">
+                    Esqueci minha senha
+                  </a>
+                </div>
+
+                <Button type="submit" loading={loading} className="mt-1 w-full">
+                  {!loading && (
+                    <>
+                      Entrar na plataforma
+                      <span aria-hidden="true" className="ml-1.5">→</span>
+                    </>
+                  )}
+                </Button>
+              </form>
+
+              <div className="my-6 flex items-center gap-3">
+                <div className="h-px flex-1 bg-white/10" />
+                <span className="text-xs text-white/55">ou continue com</span>
+                <div className="h-px flex-1 bg-white/10" />
+              </div>
+
+              <div className="grid grid-cols-2 gap-2.5">
+                <SocialButton icon={<GoogleIcon />} label="Google" />
+                <SocialButton icon={<MicrosoftIcon />} label="Microsoft" />
+              </div>
+
+              <p className="mt-8 text-center text-sm text-white/75">
+                Ainda não tem uma conta?{' '}
+                <a href="#" className="font-semibold text-brand-cyan-400 hover:text-white hover:underline">
+                  Criar conta ›
+                </a>
+              </p>
             </div>
 
-            <div className="grid grid-cols-3 gap-2.5">
-              <SocialButton icon={<GoogleIcon />} label="Google" />
-              <SocialButton icon={<MicrosoftIcon />} label="Microsoft" />
-              <SocialButton icon={<LinkedInIcon />} label="LinkedIn" />
+            <div className="flex w-full max-w-[408px] flex-col items-center gap-2.5 text-center">
+              <div className="flex items-center gap-1.5 text-xs text-white/70">
+                <Lock className="h-3.5 w-3.5" />
+                Seus dados estão protegidos com criptografia de ponta a ponta.
+              </div>
+              <div className="flex items-center gap-3 text-xs text-white/70">
+                <a href="#" className="hover:text-white/80 hover:underline">
+                  Política de Privacidade
+                </a>
+                <span>·</span>
+                <a href="#" className="hover:text-white/80 hover:underline">
+                  Termos de Uso
+                </a>
+              </div>
             </div>
-
-            <p className="mt-6 text-center text-sm text-ink-500">
-              Ainda não tem uma conta?{' '}
-              <a href="#" className="font-semibold text-brand-blue-600 hover:underline">
-                Criar conta ›
-              </a>
-            </p>
           </div>
         </div>
-
-        <footer className="flex flex-col items-center gap-2 px-6 pb-8 text-center">
-          <div className="flex items-center gap-1.5 text-xs text-ink-400">
-            <Lock className="h-3.5 w-3.5" />
-            Seus dados estão protegidos com criptografia de ponta a ponta.
-          </div>
-          <div className="flex items-center gap-3 text-xs text-ink-400">
-            <a href="#" className="hover:text-ink-600 hover:underline">
-              Política de Privacidade
-            </a>
-            <span>·</span>
-            <a href="#" className="hover:text-ink-600 hover:underline">
-              Termos de Uso
-            </a>
-          </div>
-        </footer>
       </div>
-    </div>
-  )
-}
-
-function Stat({ value, label }: { value: string; label: string }) {
-  return (
-    <div className="flex flex-col">
-      <span className="text-xl font-bold text-brand-cyan-400">{value}</span>
-      <span className="text-xs text-white/60">{label}</span>
     </div>
   )
 }
@@ -244,10 +228,10 @@ function SocialButton({ icon, label }: { icon: React.ReactNode; label: string })
   return (
     <button
       type="button"
-      className="flex items-center justify-center gap-2 rounded-xl border border-ink-200 bg-white py-2.5 text-sm font-medium text-ink-700 transition-colors hover:bg-ink-100"
+      className="flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/[0.05] px-2 py-2.5 text-sm font-medium text-white/85 backdrop-blur-sm transition-colors hover:bg-white/10"
     >
       {icon}
-      <span className="hidden sm:inline">{label}</span>
+      <span>{label}</span>
     </button>
   )
 }
