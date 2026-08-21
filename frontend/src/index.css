@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", system-ui, "Segoe UI", Roboto, sans-serif;
+
+  /* ETP Systems — design tokens */
+  --color-navy-950: #0a1229;
+  --color-navy-900: #0d1730;
+  --color-navy-800: #13214a;
+  --color-navy-700: #1b2c63;
+  --color-navy-600: #24397f;
+
+  --color-brand-blue-700: #1d4ed8;
+  --color-brand-blue-600: #2563eb;
+  --color-brand-blue-500: #3b82f6;
+
+  --color-brand-cyan-500: #0ea5e9;
+  --color-brand-cyan-400: #22c3ee;
+
+  --color-surface: #f5f7fb;
+  --color-surface-alt: #eef1f7;
+
+  --color-ink-900: #0f172a;
+  --color-ink-700: #334155;
+  --color-ink-500: #64748b;
+  --color-ink-400: #94a3b8;
+  --color-ink-200: #e2e8f0;
+  --color-ink-100: #eef2f7;
+
+  --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.04), 0 12px 32px -12px rgba(15, 23, 42, 0.12);
+}
+
+body {
+  background: var(--color-surface);
+  color: var(--color-ink-900);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

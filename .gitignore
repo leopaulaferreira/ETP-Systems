@@ -1,0 +1,22 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.sw?
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# Backend (Java/Node — placeholder until backend/ is scaffolded)
+backend/target/
+backend/node_modules/
+backend/dist/
+
+# Database
+database/*.sql.bak

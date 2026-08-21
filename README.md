@@ -100,8 +100,50 @@ ou
 ou  
 - Azure  
 
-## Prototipação
-- Figma  
+## Arquitetura definida
+
+```
+┌───────────────┐
+│     React     │
+│  TypeScript   │
+└───────┬───────┘
+        │
+     REST API
+        │
+┌───────▼───────┐
+│  Spring Boot  │
+│               │
+│ Controllers   │
+│ Services      │
+│ Repositories  │
+│ Security      │
+└───────┬───────┘
+        │
+    Hibernate
+        │
+┌───────▼───────┐
+│     MySQL     │
+└───────────────┘
+```
+
+---
+
+# 📂 Estrutura do repositório
+
+```
+ETP-Systems/
+│
+├── backend/
+├── frontend/
+├── database/
+├── docs/
+│
+├── docker-compose.yml
+├── .gitignore
+└── README.md
+```
+
+A estrutura ainda vai evoluir conforme o projeto avança.
 
 ---
 
@@ -110,4 +152,18 @@ ou
 ## 1️⃣ Clonar o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/etp-systems.git
+git clone https://github.com/leopaulaferreira/ETP-Systems.git
+cd ETP-Systems
+```
+
+## 2️⃣ Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Acesse `http://localhost:5173`.
+
+> Backend e banco de dados ainda serão implementados — por enquanto o front-end roda com dados fictícios.
