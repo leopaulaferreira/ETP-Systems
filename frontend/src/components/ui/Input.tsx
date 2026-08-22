@@ -9,8 +9,25 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> & {
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ label, icon, error, trailing, id, className = '', tone = 'light', ...rest }, ref) => {
+  (
+    {
+      label,
+      icon,
+      error,
+      trailing,
+      id,
+      className = '',
+      tone = 'light',
+      'aria-describedby': ariaDescribedBy,
+      'aria-invalid': ariaInvalid,
+      ...rest
+    },
+    ref,
+  ) => {
     const isDark = tone === 'dark'
+    const errorId = id ? `${id}-error` : undefined
+    const describedBy = [ariaDescribedBy, error ? errorId : undefined].filter(Boolean).join(' ') || undefined
+
     return (
       <div className="flex flex-col gap-1.5">
         {label && (
@@ -19,7 +36,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           </label>
         )}
         <div
-          className={`flex items-center gap-2 rounded-xl border px-3.5 py-3.5 transition-colors focus-within:ring-2 ${
+          data-input-control
+          className={`flex items-center gap-2 rounded-xl border px-3.5 py-3.5 transition-[border-color,background-color,box-shadow] duration-200 focus-within:ring-2 motion-reduce:transition-none ${
             isDark
               ? 'bg-white/[0.06] backdrop-blur-sm focus-within:border-brand-cyan-400 focus-within:ring-brand-cyan-400/20'
               : 'bg-white focus-within:border-brand-blue-500 focus-within:ring-brand-blue-500/20'
@@ -29,6 +47,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           <input
             ref={ref}
             id={id}
+            aria-describedby={describedBy}
+            aria-invalid={error ? true : ariaInvalid}
             className={`w-full min-w-0 bg-transparent text-sm focus:outline-none ${
               isDark ? 'text-white placeholder:text-white/55' : 'text-ink-900 placeholder:text-ink-500'
             } ${className}`}
@@ -36,9 +56,15 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           />
           {trailing && <span className="shrink-0">{trailing}</span>}
         </div>
-        <span className={`block min-h-[1rem] text-xs font-medium ${isDark ? 'text-red-300' : 'text-red-500'}`}>
-          {error}
-        </span>
+        {error && (
+          <span
+            id={errorId}
+            role="alert"
+            className={`block text-xs font-medium ${isDark ? 'text-red-300' : 'text-red-500'}`}
+          >
+            {error}
+          </span>
+        )}
       </div>
     )
   },

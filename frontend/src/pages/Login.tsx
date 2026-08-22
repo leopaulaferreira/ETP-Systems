@@ -1,18 +1,49 @@
-import { type FormEvent, useState } from 'react'
+import { type FormEvent, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Building2, ChevronDown, Eye, EyeOff, Globe, Lock, Mail, ShieldCheck, User } from 'lucide-react'
+import {
+  BadgeCheck,
+  Building2,
+  Check,
+  ChevronDown,
+  Eye,
+  EyeOff,
+  Globe,
+  GraduationCap,
+  Lock,
+  Mail,
+  Route,
+  ShieldCheck,
+  TrendingUp,
+  User,
+} from 'lucide-react'
 import Button from '../components/ui/Button'
 import Input from '../components/ui/Input'
 import Checkbox from '../components/ui/Checkbox'
 import { GoogleIcon, MicrosoftIcon } from '../components/BrandIcons'
-import loginBg from '../assets/login-bg.png'
+import LoginBackdrop from '../components/login/LoginBackdrop'
+import { languageOptions, loginTranslations, type Locale } from '../content/loginTranslations'
+import etpSymbol from '../assets/etp-symbol.svg'
 
 type AccountType = 'colaborador' | 'empresa'
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+const featureIcons = [GraduationCap, Route, BadgeCheck, TrendingUp]
+const featureAccentClasses = [
+  'border-cyan-200/15 bg-cyan-300/[0.07] text-cyan-200',
+  'border-cyan-300/15 bg-cyan-400/[0.07] text-cyan-300',
+  'border-sky-400/15 bg-sky-500/[0.07] text-sky-400',
+  'border-blue-400/15 bg-blue-500/[0.08] text-blue-400',
+]
+
+function getInitialLocale(): Locale {
+  const savedLocale = window.localStorage.getItem('etp-locale')
+  return languageOptions.some(({ locale }) => locale === savedLocale) ? (savedLocale as Locale) : 'pt-BR'
+}
 
 export default function Login() {
   const navigate = useNavigate()
+  const [locale, setLocale] = useState<Locale>(getInitialLocale)
+  const [languageMenuOpen, setLanguageMenuOpen] = useState(false)
   const [accountType, setAccountType] = useState<AccountType>('colaborador')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -20,15 +51,22 @@ export default function Login() {
   const [rememberMe, setRememberMe] = useState(true)
   const [loading, setLoading] = useState(false)
   const [errors, setErrors] = useState<{ email?: string; password?: string }>({})
+  const copy = loginTranslations[locale]
+  const selectedLanguage = languageOptions.find((language) => language.locale === locale) ?? languageOptions[0]
+
+  useEffect(() => {
+    document.documentElement.lang = locale
+    window.localStorage.setItem('etp-locale', locale)
+  }, [locale])
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault()
 
     const nextErrors: { email?: string; password?: string } = {}
-    if (!email) nextErrors.email = 'Informe seu e-mail ou login.'
-    else if (!emailPattern.test(email)) nextErrors.email = 'Digite um e-mail válido.'
-    if (!password) nextErrors.password = 'Informe sua senha.'
-    else if (password.length < 6) nextErrors.password = 'A senha deve ter pelo menos 6 caracteres.'
+    if (!email) nextErrors.email = copy.errors.emailRequired
+    else if (!emailPattern.test(email)) nextErrors.email = copy.errors.emailInvalid
+    if (!password) nextErrors.password = copy.errors.passwordRequired
+    else if (password.length < 6) nextErrors.password = copy.errors.passwordLength
 
     setErrors(nextErrors)
     if (Object.keys(nextErrors).length > 0) return
@@ -40,98 +78,192 @@ export default function Login() {
     }, 1200)
   }
 
+  function handleLanguageSelect(nextLocale: Locale) {
+    setLocale(nextLocale)
+    setLanguageMenuOpen(false)
+    setErrors({})
+  }
+
   return (
-    <div className="relative flex h-screen w-full overflow-hidden bg-[#0b0f2c]">
-      <img
-        src={loginBg}
-        alt=""
-        className="absolute inset-0 h-full w-full object-cover object-[left_top]"
-        draggable={false}
-      />
+    <main className="login-shell relative h-[100svh] min-h-[640px] w-full overflow-hidden bg-[#030817]">
+      <LoginBackdrop />
 
-      <div className="relative z-10 flex h-full w-full">
-        {/* Painel de marca */}
-        <div className="relative hidden h-full flex-col justify-between overflow-hidden px-12 py-12 lg:flex lg:w-[55%] xl:px-20 xl:py-16">
-          <div className="relative z-10" />
-
-          <div className="relative z-10 -mt-7 flex max-w-xl flex-col gap-5">
-            <span className="inline-flex w-fit items-center rounded-full border border-cyan-200/25 bg-white/[0.06] px-4 py-1.5 text-sm text-white backdrop-blur-sm">
-              Conhecimento para avançar.
+      <header className="login-header absolute inset-x-0 top-0 z-30 flex items-center justify-between px-6 py-5 sm:px-8 lg:px-12 lg:py-7 xl:px-20">
+        <div className="flex items-center gap-3" aria-label="ETP Systems">
+          <img src={etpSymbol} alt="" className="h-[42px] w-[42px] shrink-0 object-contain sm:h-[46px] sm:w-[46px]" />
+          <div className="flex flex-col items-start leading-none">
+            <span className="text-[28px] font-[480] tracking-[-0.055em] text-white sm:text-[31px]">etp</span>
+            <span className="mt-0.5 pl-0.5 text-[7px] font-semibold uppercase tracking-[0.42em] text-white/50">
+              systems
             </span>
-            <h1 className="text-4xl font-bold leading-tight text-white text-balance xl:text-5xl">
-              Impulsione sua carreira com{' '}
-              <span className="bg-gradient-to-r from-white via-cyan-200 to-brand-cyan-400 bg-clip-text text-transparent drop-shadow-[0_0_22px_rgba(34,195,238,0.55)]">
-                conhecimento que transforma.
-              </span>
-            </h1>
-            <p className="max-w-md text-[15px] leading-relaxed text-white">
-              Plataforma completa para desenvolver habilidades, conquistar certificações e acelerar
-              resultados.
-            </p>
-          </div>
-
-          <div className="relative z-10 flex items-center gap-2 text-xs text-white">
-            <ShieldCheck className="h-4 w-4 text-brand-cyan-400" />
-            Ambiente seguro e confiável para seu aprendizado.
           </div>
         </div>
 
-        {/* Painel de autenticação */}
-        <div className="flex h-full w-full flex-1 flex-col overflow-y-auto">
-          <div className="flex items-center justify-end px-6 pt-6 lg:px-10">
-            <button
-              type="button"
-              className="flex items-center gap-1.5 rounded-lg border border-white/15 bg-white/[0.05] px-3 py-1.5 text-sm font-medium text-white/80 backdrop-blur-sm transition-colors hover:bg-white/10"
+        <div
+          className="relative"
+          onBlur={(event) => {
+            if (!event.currentTarget.contains(event.relatedTarget)) setLanguageMenuOpen(false)
+          }}
+          onKeyDown={(event) => {
+            if (event.key === 'Escape') setLanguageMenuOpen(false)
+          }}
+        >
+          <button
+            type="button"
+            aria-label={`${copy.languageSelector}. ${selectedLanguage.nativeName}`}
+            aria-haspopup="menu"
+            aria-expanded={languageMenuOpen}
+            onClick={() => setLanguageMenuOpen((open) => !open)}
+            className="flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-3 py-2 text-xs font-medium text-white/75 backdrop-blur-md transition-[border-color,background-color,color] duration-200 hover:border-white/25 hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/35 sm:min-w-36 sm:px-4 sm:text-sm motion-reduce:transition-none"
+          >
+            <Globe className="h-4 w-4 text-cyan-300/70" />
+            <span className="hidden flex-1 text-left sm:inline">{selectedLanguage.nativeName}</span>
+            <span className="sm:hidden">{selectedLanguage.code.split('-')[0]}</span>
+            <ChevronDown
+              className={`h-3.5 w-3.5 text-white/40 transition-transform duration-200 motion-reduce:transition-none ${languageMenuOpen ? 'rotate-180' : ''}`}
+            />
+          </button>
+
+          {languageMenuOpen && (
+            <div
+              role="menu"
+              aria-label={copy.languageSelector}
+              className="login-language-menu absolute right-0 top-full mt-2 w-56 overflow-hidden rounded-2xl border border-white/12 bg-[#0d1633]/98 p-1.5 shadow-[0_24px_60px_-22px_rgba(0,0,0,0.9)] backdrop-blur-2xl"
             >
-              <Globe className="h-4 w-4 text-white/50" />
-              Português
-              <ChevronDown className="h-3.5 w-3.5 text-white/40" />
-            </button>
+              {languageOptions.map((language) => {
+                const isSelected = language.locale === locale
+
+                return (
+                  <button
+                    key={language.locale}
+                    type="button"
+                    role="menuitemradio"
+                    aria-checked={isSelected}
+                    onClick={() => handleLanguageSelect(language.locale)}
+                    className={`flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-cyan-300/30 motion-reduce:transition-none ${
+                      isSelected
+                        ? 'bg-white/[0.09] text-white'
+                        : 'text-white/65 hover:bg-white/[0.06] hover:text-white'
+                    }`}
+                  >
+                    <span className="w-9 text-[10px] font-semibold tracking-wider text-white/35">{language.code}</span>
+                    <span className="flex-1 text-sm font-medium">{language.nativeName}</span>
+                    {isSelected && <Check className="h-4 w-4 text-cyan-300/80" />}
+                  </button>
+                )
+              })}
+            </div>
+          )}
+        </div>
+      </header>
+
+      <div className="login-main relative z-10 flex h-full w-full pt-[84px] lg:pt-[96px]">
+        {/* Painel de marca */}
+        <section className="login-brand-panel relative hidden h-full flex-col justify-between overflow-hidden px-12 pb-10 pt-12 lg:flex lg:w-[52%] xl:px-20 xl:pb-14 xl:pt-16">
+          <div className="login-brand-copy relative z-10 flex max-w-[620px] flex-1 flex-col justify-center gap-6 pb-10">
+            <span className="inline-flex w-fit items-center gap-2 rounded-full border border-cyan-300/15 bg-gradient-to-r from-cyan-300/[0.08] to-blue-600/[0.08] px-4 py-2 text-xs font-medium tracking-wide text-white/75 backdrop-blur-sm">
+              <span className="h-1.5 w-1.5 rounded-full bg-gradient-to-br from-cyan-300 to-blue-500 shadow-[0_0_12px_rgba(103,232,249,0.55)]" />
+              {copy.badge}
+            </span>
+
+            <h1 className="text-balance text-[42px] font-semibold leading-[1.08] tracking-[-0.035em] text-white xl:text-[56px]">
+              {copy.headline}{' '}
+              <span className="bg-gradient-to-r from-cyan-200 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
+                {copy.headlineAccent}
+              </span>
+            </h1>
+
+            <p className="max-w-lg text-[15px] leading-7 text-slate-300/75 xl:text-base">{copy.description}</p>
           </div>
 
-          <div className="flex flex-1 flex-col items-center justify-center gap-4 px-6 py-8 lg:items-start lg:pl-6 lg:pr-6 xl:pl-14 xl:pr-10">
-            <div className="w-full max-w-[408px] rounded-lg bg-white/10 p-8 shadow-[0_24px_70px_-24px_rgba(0,0,0,0.65)] backdrop-blur-2xl backdrop-saturate-150">
-              <div className="mb-6 flex flex-col gap-1.5 text-center">
-                <h2 className="text-3xl font-bold text-white">Continue sua jornada</h2>
-                <p className="text-sm text-white/75">Entre para continuar aprendendo.</p>
+          <ul className="login-features relative z-10 mb-7 grid w-full max-w-[600px] grid-cols-4 divide-x divide-white/[0.08]">
+            {copy.features.map((feature, index) => {
+              const Icon = featureIcons[index] ?? GraduationCap
+              const accentClass = featureAccentClasses[index] ?? featureAccentClasses[0]
+
+              return (
+                <li
+                  key={feature.title}
+                  className="login-feature group flex min-w-0 flex-col items-center px-3 text-center first:pl-0 last:pr-0"
+                >
+                  <span
+                    className={`login-feature-icon mb-2.5 flex h-9 w-9 items-center justify-center rounded-xl border transition-[transform,box-shadow] duration-200 group-hover:-translate-y-0.5 group-hover:shadow-[0_10px_24px_-12px_currentColor] motion-reduce:transform-none motion-reduce:transition-none ${accentClass}`}
+                  >
+                    <Icon className="h-[18px] w-[18px]" strokeWidth={1.8} />
+                  </span>
+                  <span className="text-[11px] font-semibold leading-4 text-white/75 xl:text-xs">{feature.title}</span>
+                  <span className="login-feature-subtitle text-[10px] leading-4 text-white/42 xl:text-[11px]">
+                    {feature.subtitle}
+                  </span>
+                </li>
+              )
+            })}
+          </ul>
+
+          <div className="login-brand-security relative z-10 flex items-center gap-2 text-xs text-white/55">
+            <ShieldCheck className="h-4 w-4 text-cyan-300" />
+            {copy.secureLearning}
+          </div>
+        </section>
+
+        {/* Painel de autenticação */}
+        <section className="login-auth-panel flex h-full w-full flex-1 overflow-y-auto px-5 py-5 sm:px-8 lg:px-6 lg:py-4 xl:px-14">
+          <div className="login-auth-content my-auto flex w-full flex-col items-center gap-4 lg:items-start">
+            <div className="login-card w-full max-w-[440px] rounded-[28px] border border-white/[0.11] bg-[#111b3d]/90 p-6 shadow-[0_28px_80px_-32px_rgba(0,0,0,0.85)] backdrop-blur-2xl sm:p-7">
+              <div className="login-card-heading mb-5 flex flex-col gap-2 text-left">
+                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300/85">
+                  {copy.welcome}
+                </span>
+                <h2 className="text-[28px] font-semibold leading-tight tracking-[-0.025em] text-white sm:text-[30px]">
+                  {copy.title}
+                </h2>
+                <p className="text-sm leading-6 text-white/60">{copy.subtitle}</p>
               </div>
 
-              <div className="mb-6 grid grid-cols-2 gap-1.5 rounded-xl border border-white/10 bg-white/[0.04] p-1">
+              <div
+                className="login-access-tabs mb-5 grid grid-cols-2 gap-1 rounded-2xl border border-white/10 bg-black/10 p-1"
+                aria-label={copy.accessType}
+              >
                 <button
                   type="button"
                   onClick={() => setAccountType('colaborador')}
-                  className={`flex flex-col items-center justify-center gap-0.5 rounded-lg px-2 py-2 text-[11px] font-medium leading-tight transition-colors sm:flex-row sm:gap-1 sm:px-1.5 sm:text-[13px] ${
+                  aria-pressed={accountType === 'colaborador'}
+                  className={`flex min-h-10 items-center justify-center gap-2 rounded-xl px-2 text-xs font-medium transition-[background-color,color,box-shadow,transform] duration-200 active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-cyan-300/30 motion-reduce:transform-none motion-reduce:transition-none sm:text-[13px] ${
                     accountType === 'colaborador'
-                      ? 'bg-gradient-to-r from-brand-blue-600 to-brand-cyan-500 text-white shadow-sm'
-                      : 'text-white/75 hover:text-white/95'
+                      ? 'bg-white/[0.12] text-white shadow-sm ring-1 ring-inset ring-white/10'
+                      : 'text-white/55 hover:bg-white/[0.04] hover:text-white/85'
                   }`}
                 >
                   <User className="h-4 w-4 shrink-0" />
-                  Sou colaborador
+                  {copy.collaborator}
                 </button>
                 <button
                   type="button"
                   onClick={() => setAccountType('empresa')}
-                  className={`flex flex-col items-center justify-center gap-0.5 rounded-lg px-2 py-2 text-[11px] font-medium leading-tight transition-colors sm:flex-row sm:gap-1 sm:px-1.5 sm:text-[13px] ${
+                  aria-pressed={accountType === 'empresa'}
+                  className={`flex min-h-10 items-center justify-center gap-2 rounded-xl px-2 text-xs font-medium transition-[background-color,color,box-shadow,transform] duration-200 active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-cyan-300/30 motion-reduce:transform-none motion-reduce:transition-none sm:text-[13px] ${
                     accountType === 'empresa'
-                      ? 'bg-gradient-to-r from-brand-blue-600 to-brand-cyan-500 text-white shadow-sm'
-                      : 'text-white/75 hover:text-white/95'
+                      ? 'bg-white/[0.12] text-white shadow-sm ring-1 ring-inset ring-white/10'
+                      : 'text-white/55 hover:bg-white/[0.04] hover:text-white/85'
                   }`}
                 >
                   <Building2 className="h-4 w-4 shrink-0" />
-                  Sou empresa / RH
+                  {copy.company}
                 </button>
               </div>
 
-              <form className="flex flex-col gap-4" onSubmit={handleSubmit} noValidate>
+              <form className="login-form flex flex-col gap-2.5" onSubmit={handleSubmit} noValidate>
                 <Input
                   id="email"
-                  label="E-mail ou login"
+                  label={copy.email}
                   type="email"
-                  placeholder="seu@email.com"
+                  placeholder={copy.emailPlaceholder}
                   icon={<Mail className="h-4 w-4" />}
                   value={email}
-                  onChange={(event) => setEmail(event.target.value)}
+                  onChange={(event) => {
+                    setEmail(event.target.value)
+                    if (errors.email) setErrors((current) => ({ ...current, email: undefined }))
+                  }}
                   error={errors.email}
                   autoComplete="username"
                   tone="dark"
@@ -139,12 +271,15 @@ export default function Login() {
 
                 <Input
                   id="password"
-                  label="Senha"
+                  label={copy.password}
                   type={showPassword ? 'text' : 'password'}
                   placeholder="••••••••••"
                   icon={<Lock className="h-4 w-4" />}
                   value={password}
-                  onChange={(event) => setPassword(event.target.value)}
+                  onChange={(event) => {
+                    setPassword(event.target.value)
+                    if (errors.password) setErrors((current) => ({ ...current, password: undefined }))
+                  }}
                   error={errors.password}
                   autoComplete="current-password"
                   tone="dark"
@@ -152,40 +287,53 @@ export default function Login() {
                     <button
                       type="button"
                       onClick={() => setShowPassword((value) => !value)}
-                      className="text-white/50 hover:text-white/90"
-                      aria-label={showPassword ? 'Ocultar senha' : 'Mostrar senha'}
+                      className="rounded-md text-white/50 transition-colors hover:text-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/35 motion-reduce:transition-none"
+                      aria-label={showPassword ? copy.hidePassword : copy.showPassword}
                     >
                       {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                     </button>
                   }
                 />
 
-                <div className="flex items-center justify-between">
+                <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2">
                   <Checkbox
                     id="remember"
-                    label="Lembrar de mim"
+                    label={copy.keepConnected}
                     checked={rememberMe}
                     onChange={(event) => setRememberMe(event.target.checked)}
                     tone="dark"
                   />
-                  <a href="#" className="text-sm font-medium text-brand-cyan-400 hover:text-white hover:underline">
-                    Esqueci minha senha
+                  <a
+                    href="#"
+                    className="rounded-sm text-sm font-medium text-white/55 transition-colors hover:text-white/85 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/35 motion-reduce:transition-none"
+                  >
+                    {copy.recoverPassword}
                   </a>
                 </div>
 
-                <Button type="submit" loading={loading} className="mt-1 w-full">
+                <Button
+                  type="submit"
+                  loading={loading}
+                  loadingLabel={copy.submitting}
+                  className="login-submit-button group mt-1 w-full shadow-[0_14px_36px_-16px_rgba(37,99,235,0.9)] hover:-translate-y-0.5 hover:shadow-[0_18px_42px_-16px_rgba(37,99,235,0.95)]"
+                >
                   {!loading && (
                     <>
-                      Entrar na plataforma
-                      <span aria-hidden="true" className="ml-1.5">→</span>
+                      {copy.submit}
+                      <span
+                        aria-hidden="true"
+                        className="ml-1.5 inline-block transition-transform duration-200 group-hover:translate-x-1 motion-reduce:transform-none motion-reduce:transition-none"
+                      >
+                        →
+                      </span>
                     </>
                   )}
                 </Button>
               </form>
 
-              <div className="my-6 flex items-center gap-3">
+              <div className="login-divider my-5 flex items-center gap-3">
                 <div className="h-px flex-1 bg-white/10" />
-                <span className="text-xs text-white/55">ou continue com</span>
+                <span className="text-xs text-white/45">{copy.socialDivider}</span>
                 <div className="h-px flex-1 bg-white/10" />
               </div>
 
@@ -194,33 +342,42 @@ export default function Login() {
                 <SocialButton icon={<MicrosoftIcon />} label="Microsoft" />
               </div>
 
-              <p className="mt-8 text-center text-sm text-white/75">
-                Ainda não tem uma conta?{' '}
-                <a href="#" className="font-semibold text-brand-cyan-400 hover:text-white hover:underline">
-                  Criar conta ›
+              <p className="login-signup mt-6 text-center text-sm text-white/60">
+                {copy.firstAccess}{' '}
+                <a
+                  href="#"
+                  className="rounded-sm font-semibold text-white/65 transition-colors hover:text-white hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/35 motion-reduce:transition-none"
+                >
+                  {copy.createAccount} ›
                 </a>
               </p>
             </div>
 
-            <div className="flex w-full max-w-[408px] flex-col items-center gap-2.5 text-center">
-              <div className="flex items-center gap-1.5 text-xs text-white/70">
+            <div className="login-auth-footer flex w-full max-w-[440px] flex-col items-center gap-2.5 px-2 text-center">
+              <div className="flex items-center gap-1.5 text-xs text-white/45">
                 <Lock className="h-3.5 w-3.5" />
-                Seus dados estão protegidos com criptografia de ponta a ponta.
+                {copy.protectedAccess}
               </div>
-              <div className="flex items-center gap-3 text-xs text-white/70">
-                <a href="#" className="hover:text-white/80 hover:underline">
-                  Política de Privacidade
+              <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs text-white/45">
+                <a
+                  href="#"
+                  className="rounded-sm transition-colors hover:text-white/75 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/35 motion-reduce:transition-none"
+                >
+                  {copy.privacy}
                 </a>
                 <span>·</span>
-                <a href="#" className="hover:text-white/80 hover:underline">
-                  Termos de Uso
+                <a
+                  href="#"
+                  className="rounded-sm transition-colors hover:text-white/75 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/35 motion-reduce:transition-none"
+                >
+                  {copy.terms}
                 </a>
               </div>
             </div>
           </div>
-        </div>
+        </section>
       </div>
-    </div>
+    </main>
   )
 }
 
@@ -228,7 +385,7 @@ function SocialButton({ icon, label }: { icon: React.ReactNode; label: string })
   return (
     <button
       type="button"
-      className="flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/[0.05] px-2 py-2.5 text-sm font-medium text-white/85 backdrop-blur-sm transition-colors hover:bg-white/10"
+      className="flex items-center justify-center gap-2 rounded-xl border border-white/12 bg-white/[0.045] px-2 py-2.5 text-sm font-medium text-white/75 transition-[transform,border-color,background-color,color] duration-200 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.08] hover:text-white active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/30 motion-reduce:transform-none motion-reduce:transition-none"
     >
       {icon}
       <span>{label}</span>

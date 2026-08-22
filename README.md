@@ -21,6 +21,16 @@ O objetivo é tornar o aprendizado corporativo **mais acessível, organizado e a
 
 ---
 
+# 🖼️ Prévia da Interface
+
+## Tela de Login
+
+A primeira interface implementada apresenta a nova identidade visual da plataforma, acesso por perfil e suporte a múltiplos idiomas.
+
+![Tela de login da plataforma ETP Systems](docs/images/login-etp-systems.png)
+
+---
+
 # 🎯 Objetivos do Projeto""
 
 - Fortalecer a **capacitação interna** dos colaboradores  
