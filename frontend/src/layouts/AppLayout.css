@@ -1,0 +1,30 @@
+/* Chrome do layout autenticado (Sidebar + área de conteúdo). Tokens visuais vêm de src/styles/theme.css. */
+.app-shell {
+  font-family: "Manrope Variable", "Manrope", system-ui, "Segoe UI", sans-serif;
+}
+
+.app-sidebar {
+  background: linear-gradient(180deg, var(--color-navy-950) 0%, #0b1428 55%, var(--color-navy-900) 100%);
+}
+
+.app-scrollarea {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-ink-200) transparent;
+}
+
+.app-scrollarea::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.app-scrollarea::-webkit-scrollbar-thumb {
+  background-color: var(--color-ink-200);
+  border-radius: 999px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-shell * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
