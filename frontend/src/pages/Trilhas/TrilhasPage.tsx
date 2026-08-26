@@ -27,7 +27,7 @@ export default function TrilhasPage() {
   )
 
   return (
-    <>
+    <div className="flex flex-col gap-5 lg:gap-6">
       <TrilhasHero />
 
       <TrilhasFilters
@@ -43,15 +43,19 @@ export default function TrilhasPage() {
 
       <TrailGrid paths={filteredPaths} />
 
-      <div className="flex justify-center pt-1">
+      <div className="flex justify-center pb-1 pt-0.5">
         <button
           type="button"
-          className="flex items-center gap-1.5 text-sm font-semibold text-brand-blue-600 transition-colors duration-150 hover:text-brand-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue-500/30"
+          className="group flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-bold text-brand-blue-600 transition-colors duration-150 hover:bg-brand-blue-600/[0.06] hover:text-brand-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue-500/30"
         >
           Ver todas as trilhas
-          <ArrowRight className="h-3.5 w-3.5" strokeWidth={2.5} aria-hidden="true" />
+          <ArrowRight
+            className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5"
+            strokeWidth={2.5}
+            aria-hidden="true"
+          />
         </button>
       </div>
-    </>
+    </div>
   )
 }

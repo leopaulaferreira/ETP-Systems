@@ -18,21 +18,41 @@ export default function TrilhasFilters({
   onSelectLevel,
 }: TrilhasFiltersProps) {
   return (
-    <div className="flex flex-wrap items-center gap-2 rounded-2xl border border-ink-200/60 bg-white p-4 shadow-card">
-      <span className="pr-1 text-sm font-semibold text-ink-700">Categorias</span>
-      {categories.map((category) => (
-        <FilterPill
-          key={category}
-          label={category}
-          isActive={category === selectedCategory}
-          onClick={() => onSelectCategory(category)}
-        />
-      ))}
+    <div className="flex flex-col gap-4 rounded-[20px] border border-ink-200/70 bg-white p-4 shadow-[0_10px_28px_-20px_rgba(15,23,42,0.35)] sm:p-5 xl:flex-row xl:items-center xl:gap-5">
+      <FilterGroup label="Categorias">
+        {categories.map((category) => (
+          <FilterPill
+            key={category}
+            label={category}
+            isActive={category === selectedCategory}
+            onClick={() => onSelectCategory(category)}
+          />
+        ))}
+      </FilterGroup>
 
-      <span className="ml-2 pr-1 text-sm font-semibold text-ink-700">Nível</span>
-      {levels.map((level) => (
-        <FilterPill key={level} label={level} isActive={level === selectedLevel} onClick={() => onSelectLevel(level)} />
-      ))}
+      <span className="hidden h-8 w-px shrink-0 bg-ink-200 xl:block" aria-hidden="true" />
+
+      <FilterGroup label="Nível">
+        {levels.map((level) => (
+          <FilterPill
+            key={level}
+            label={level}
+            isActive={level === selectedLevel}
+            onClick={() => onSelectLevel(level)}
+          />
+        ))}
+      </FilterGroup>
+    </div>
+  )
+}
+
+function FilterGroup({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <div className="flex flex-wrap items-center gap-2.5">
+      <span className="mr-0.5 min-w-[76px] text-[13px] font-extrabold tracking-[-0.01em] text-ink-700 xl:min-w-0">
+        {label}
+      </span>
+      {children}
     </div>
   )
 }
@@ -43,10 +63,10 @@ function FilterPill({ label, isActive, onClick }: { label: string; isActive: boo
       type="button"
       aria-pressed={isActive}
       onClick={onClick}
-      className={`rounded-full border px-3.5 py-1.5 text-sm font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue-500/30 ${
+      className={`min-h-9 rounded-full border px-4 py-2 text-[13px] font-bold leading-none transition-[background-color,border-color,color,box-shadow,transform] duration-150 hover:-translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue-500/35 focus-visible:ring-offset-2 motion-reduce:transform-none ${
         isActive
-          ? 'border-brand-blue-600 bg-brand-blue-600 text-white shadow-sm'
-          : 'border-ink-200 bg-white text-ink-700 hover:border-brand-blue-300 hover:bg-blue-50/60 hover:text-brand-blue-700'
+          ? 'border-brand-blue-600 bg-brand-blue-600 text-white shadow-[0_6px_14px_-7px_rgba(37,99,235,0.85)]'
+          : 'border-ink-200/90 bg-surface/60 text-ink-700 hover:border-brand-blue-300 hover:bg-blue-50 hover:text-brand-blue-700 hover:shadow-sm'
       }`}
     >
       {label}

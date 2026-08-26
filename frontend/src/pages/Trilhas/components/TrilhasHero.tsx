@@ -1,11 +1,27 @@
-import { Route as RouteIcon, GraduationCap, TrendingUp, CheckCircle2, Star } from 'lucide-react'
+import { BookOpenCheck } from 'lucide-react'
+import trilhasHeroLearning from '../../../assets/illustrations/trilhas-hero-learning.webp'
 
 export default function TrilhasHero() {
   return (
-    <section className="flex items-center justify-between gap-6">
-      <div className="flex flex-col gap-2">
-        <h1 className="text-[28px] font-bold leading-tight tracking-[-0.01em] text-ink-900">Explorar Trilhas</h1>
-        <p className="max-w-lg text-sm leading-relaxed text-ink-500">
+    <section className="relative isolate flex min-h-[206px] items-center overflow-hidden rounded-[24px] border border-blue-100/80 bg-gradient-to-br from-white via-[#f4f9ff] to-[#e9f6ff] px-6 py-8 shadow-[0_18px_45px_-30px_rgba(37,99,235,0.45)] sm:px-8 lg:min-h-[226px] lg:px-10 lg:py-9">
+      <div
+        aria-hidden="true"
+        className="absolute -left-16 -top-24 h-52 w-52 rounded-full border-[36px] border-brand-blue-500/[0.035]"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute bottom-0 left-[44%] h-px w-44 bg-gradient-to-r from-transparent via-brand-cyan-400/40 to-transparent"
+      />
+
+      <div className="relative z-10 flex max-w-[650px] flex-col items-start gap-3.5 xl:max-w-[58%]">
+        <span className="inline-flex items-center gap-2 rounded-full border border-brand-blue-500/15 bg-white/75 px-3 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.11em] text-brand-blue-700 shadow-sm backdrop-blur-sm">
+          <BookOpenCheck className="h-3.5 w-3.5 text-brand-cyan-500" strokeWidth={2.3} aria-hidden="true" />
+          Jornadas de aprendizado
+        </span>
+        <h1 className="text-[31px] font-extrabold leading-[1.12] tracking-[-0.025em] text-ink-900 sm:text-[34px] lg:text-[36px]">
+          Explorar Trilhas
+        </h1>
+        <p className="max-w-[620px] text-[15px] leading-7 text-ink-500 sm:text-base">
           Descubra jornadas de aprendizagem estruturadas para impulsionar suas habilidades e crescer na sua carreira.
         </p>
       </div>
@@ -14,56 +30,17 @@ export default function TrilhasHero() {
   )
 }
 
-/**
- * Ilustração decorativa PLACEHOLDER.
- *
- * O projeto ainda não tem um asset ilustrado para o tema "jornada de
- * aprendizagem". Esta composição usa ícones lucide-react organizados como
- * uma trilha de marcos ao longo de um caminho pontilhado, na mesma
- * linguagem visual do hero da Dashboard (cartão claro + blobs suaves),
- * até que uma ilustração definitiva seja fornecida pelo time de design.
- */
 function TrilhasIllustration() {
   return (
-    <div aria-hidden="true" className="relative hidden h-[176px] w-[340px] shrink-0 items-center lg:flex">
-      <div className="absolute -right-8 -top-6 h-36 w-36 rounded-full bg-brand-blue-500/10 blur-2xl" />
-      <div className="absolute -bottom-10 left-6 h-32 w-32 rounded-full bg-brand-cyan-400/10 blur-2xl" />
-
-      <div className="relative flex h-full w-full items-center overflow-hidden rounded-3xl border border-ink-200/70 bg-white/70 px-8 shadow-card backdrop-blur-sm">
-        <svg
-          viewBox="0 0 240 100"
-          preserveAspectRatio="none"
-          className="pointer-events-none absolute inset-x-8 top-1/2 h-16 w-[calc(100%-4rem)] -translate-y-1/2"
-          fill="none"
-        >
-          <path
-            d="M6 72C44 18 82 92 120 42C158 -8 196 62 234 26"
-            stroke="var(--color-brand-blue-500)"
-            strokeOpacity="0.32"
-            strokeWidth="2.5"
-            strokeDasharray="1 10"
-            strokeLinecap="round"
-          />
-        </svg>
-
-        <div className="relative flex w-full items-center justify-between">
-          <span className="flex h-11 w-11 items-center justify-center rounded-full bg-brand-blue-600 text-white shadow-card">
-            <RouteIcon className="h-5 w-5" strokeWidth={2} />
-          </span>
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-emerald-500 text-white shadow-card">
-            <CheckCircle2 className="h-4 w-4" strokeWidth={2} />
-          </span>
-          <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-cyan-500/15 text-brand-cyan-500">
-            <GraduationCap className="h-6 w-6" strokeWidth={1.8} />
-          </span>
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-amber-400 text-white shadow-card">
-            <Star className="h-4 w-4" strokeWidth={2} fill="currentColor" />
-          </span>
-          <span className="flex h-11 w-11 items-center justify-center rounded-full bg-violet-500 text-white shadow-card">
-            <TrendingUp className="h-5 w-5" strokeWidth={2} />
-          </span>
-        </div>
-      </div>
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute right-8 top-1/2 hidden h-[238px] w-[490px] -translate-y-1/2 xl:block"
+    >
+      <img
+        src={trilhasHeroLearning}
+        alt=""
+        className="h-full w-full object-contain object-right drop-shadow-[0_18px_24px_rgba(37,99,235,0.1)]"
+      />
     </div>
   )
 }

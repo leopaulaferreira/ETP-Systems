@@ -15,7 +15,7 @@ export default function TrailGrid({ paths }: TrailGridProps) {
   }
 
   return (
-    <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
+    <div className="grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2 xl:grid-cols-4">
       {paths.map((path) => (
         <TrailCard key={path.id} path={path} />
       ))}
