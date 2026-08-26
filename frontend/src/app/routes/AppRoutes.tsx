@@ -3,6 +3,7 @@ import RequireAuth from '../../auth/RequireAuth'
 import AppLayout from '../../layouts/AppLayout'
 import LoginPage from '../../pages/Login/LoginPage'
 import DashboardPage from '../../pages/Dashboard/DashboardPage'
+import TrilhasPage from '../../pages/Trilhas/TrilhasPage'
 import ComingSoonPage from '../../pages/ComingSoonPage'
 
 export default function AppRoutes() {
@@ -13,7 +14,7 @@ export default function AppRoutes() {
       <Route element={<RequireAuth />}>
         <Route element={<AppLayout />}>
           <Route path="/dashboard" element={<DashboardPage />} />
-          <Route path="/trilhas" element={<ComingSoonPage />} />
+          <Route path="/trilhas" element={<TrilhasPage />} />
           <Route path="/cursos" element={<ComingSoonPage />} />
           <Route path="/meus-cursos" element={<ComingSoonPage />} />
           <Route path="/avaliacoes" element={<ComingSoonPage />} />
