@@ -1,11 +1,18 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Search, Bell, ChevronDown, LogOut } from 'lucide-react'
+import { Search, Bell, ChevronDown, LogOut, Menu } from 'lucide-react'
 import Avatar from '../ui/Avatar'
 import { useAuth } from '../../auth/AuthContext'
 import { currentUser } from '../../mocks/user.mock'
 
-export default function Topbar() {
+type TopbarProps = {
+  /** Estado do drawer mobile — usado apenas para o aria-expanded do botão hambúrguer. */
+  isMenuOpen?: boolean
+  /** Abre o drawer mobile da Sidebar. */
+  onOpenMenu?: () => void
+}
+
+export default function Topbar({ isMenuOpen = false, onOpenMenu }: TopbarProps) {
   const [menuOpen, setMenuOpen] = useState(false)
   const { logout } = useAuth()
   const navigate = useNavigate()
@@ -17,7 +24,20 @@ export default function Topbar() {
   }
 
   return (
-    <header className="flex h-[92px] shrink-0 items-center justify-between gap-6 border-b border-ink-200 bg-white px-8">
+    <header className="flex h-[92px] shrink-0 items-center justify-between gap-4 border-b border-ink-200 bg-white px-5 sm:px-8">
+      <button
+        type="button"
+        id="mobile-menu-button"
+        aria-label="Abrir menu"
+        aria-haspopup="dialog"
+        aria-controls="app-sidebar-drawer"
+        aria-expanded={isMenuOpen}
+        onClick={onOpenMenu}
+        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-ink-500 transition-colors duration-150 hover:bg-ink-100 hover:text-ink-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue-500/30 lg:hidden"
+      >
+        <Menu className="h-5 w-5" strokeWidth={2} aria-hidden="true" />
+      </button>
+
       <div className="flex max-w-md flex-1 items-center gap-2.5 rounded-xl border border-ink-200 bg-white px-3.5 py-3 transition-[border-color,box-shadow] duration-150 focus-within:border-brand-blue-500 focus-within:ring-2 focus-within:ring-brand-blue-500/15">
         <Search className="h-[18px] w-[18px] shrink-0 text-ink-400" strokeWidth={2} aria-hidden="true" />
         <input

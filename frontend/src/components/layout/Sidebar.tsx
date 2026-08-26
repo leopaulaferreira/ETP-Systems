@@ -3,9 +3,17 @@ import { Headset, ArrowUpRight } from 'lucide-react'
 import etpSymbol from '../../assets/etp-symbol.svg'
 import { navItems } from './navItems'
 
-export default function Sidebar() {
+type SidebarProps = {
+  /** Chamado quando um item de navegação é ativado — usado para fechar o drawer mobile. */
+  onNavigate?: () => void
+}
+
+export default function Sidebar({ onNavigate }: SidebarProps) {
   return (
-    <aside className="app-sidebar app-scrollarea flex h-full w-[268px] shrink-0 flex-col overflow-y-auto px-4 py-6">
+    <aside
+      tabIndex={-1}
+      className="app-sidebar app-scrollarea flex h-full w-[268px] shrink-0 flex-col overflow-y-auto px-4 py-6 focus:outline-none"
+    >
       <div className="flex items-center gap-2.5 px-2 pb-7">
         <img src={etpSymbol} alt="" className="h-9 w-9 shrink-0 object-contain" />
         <span className="text-[19px] font-bold tracking-[-0.02em] text-white">ETP Systems</span>
@@ -18,6 +26,7 @@ export default function Sidebar() {
             <NavLink
               key={item.id}
               to={item.to}
+              onClick={onNavigate}
               className={({ isActive }) =>
                 `flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-left text-sm font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan-400/40 ${
                   isActive ? 'bg-brand-blue-600 text-white' : 'text-white/65 hover:bg-white/[0.06] hover:text-white'
