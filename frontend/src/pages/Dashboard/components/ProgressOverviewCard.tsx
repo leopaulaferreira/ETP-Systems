@@ -1,11 +1,12 @@
 import { Route, GraduationCap, Clock, Award, type LucideIcon } from 'lucide-react'
 import { progressOverview, type ProgressItem } from '../../../mocks/dashboard.mock'
 
-const icons: Record<ProgressItem['icon'], LucideIcon> = {
-  trilhas: Route,
-  cursos: GraduationCap,
-  horas: Clock,
-  certificados: Award,
+/** Mesmo esquema de cores de MetricCard (StatsGrid), já que cobrem as mesmas 4 métricas. */
+const accentConfig: Record<ProgressItem['icon'], { icon: LucideIcon; badgeClass: string; barClass: string }> = {
+  trilhas: { icon: Route, badgeClass: 'bg-blue-50 text-blue-600', barClass: 'bg-blue-500' },
+  cursos: { icon: GraduationCap, badgeClass: 'bg-emerald-50 text-emerald-600', barClass: 'bg-emerald-500' },
+  horas: { icon: Clock, badgeClass: 'bg-amber-50 text-amber-600', barClass: 'bg-amber-500' },
+  certificados: { icon: Award, badgeClass: 'bg-violet-50 text-violet-600', barClass: 'bg-violet-500' },
 }
 
 export default function ProgressOverviewCard() {
@@ -21,21 +22,26 @@ export default function ProgressOverviewCard() {
         </button>
       </div>
 
-      <ul className="flex flex-col gap-4">
+      <ul className="flex flex-col divide-y divide-ink-100">
         {progressOverview.map((item) => {
-          const Icon = icons[item.icon]
+          const { icon: Icon, badgeClass, barClass } = accentConfig[item.icon]
           const percent = Math.round((item.current / item.total) * 100)
           return (
-            <li key={item.id} className="flex flex-col gap-1.5">
-              <div className="flex items-center justify-between gap-2">
-                <span className="flex items-center gap-2 text-sm font-medium text-ink-700">
-                  <Icon className="h-4 w-4 text-ink-400" strokeWidth={2} aria-hidden="true" />
-                  {item.label}
-                </span>
-                <span className="text-sm font-bold text-ink-900">{item.displayValue}</span>
-              </div>
-              <div className="h-2 w-full overflow-hidden rounded-full bg-ink-100">
-                <div className="h-full rounded-full bg-brand-blue-600" style={{ width: `${percent}%` }} />
+            <li
+              key={item.id}
+              className="-mx-2 flex items-center gap-3 rounded-lg px-2 py-3.5 transition-colors duration-150 first:pt-0 last:pb-0 hover:bg-ink-100/50"
+            >
+              <span className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full ${badgeClass}`}>
+                <Icon className="h-5 w-5" strokeWidth={2} aria-hidden="true" />
+              </span>
+              <div className="flex min-w-0 flex-1 flex-col gap-1.5">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-sm font-medium text-ink-700">{item.label}</span>
+                  <span className="text-sm font-bold text-ink-900">{item.displayValue}</span>
+                </div>
+                <div className="h-1.5 w-full overflow-hidden rounded-full bg-ink-100">
+                  <div className={`h-full rounded-full ${barClass}`} style={{ width: `${percent}%` }} />
+                </div>
               </div>
             </li>
           )

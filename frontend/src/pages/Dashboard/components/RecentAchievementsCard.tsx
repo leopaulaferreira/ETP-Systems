@@ -24,8 +24,11 @@ export default function RecentAchievementsCard() {
         {achievements.map((achievement) => {
           const { icon: Icon, className } = badgeConfig[achievement.badge]
           return (
-            <li key={achievement.id} className="flex items-center gap-3 py-3 first:pt-0 last:pb-0">
-              <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${className}`}>
+            <li
+              key={achievement.id}
+              className="-mx-2 flex items-center gap-3 rounded-lg px-2 py-3.5 transition-colors duration-150 first:pt-0 last:pb-0 hover:bg-ink-100/50"
+            >
+              <span className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full ${className}`}>
                 <Icon className="h-5 w-5" strokeWidth={2} aria-hidden="true" />
               </span>
               <span className="flex min-w-0 flex-1 flex-col">

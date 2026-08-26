@@ -16,11 +16,14 @@ export default function RecentCertificatesCard() {
 
       <ul className="flex flex-col divide-y divide-ink-100">
         {recentCertificates.map((certificate) => (
-          <li key={certificate.id} className="flex items-center gap-3 py-3 first:pt-0 last:pb-0">
+          <li
+            key={certificate.id}
+            className="-mx-2 flex items-center gap-3 rounded-lg px-2 py-3.5 transition-colors duration-150 first:pt-0 last:pb-0 hover:bg-ink-100/50"
+          >
             {/* Miniatura simplificada — geração do certificado completo fica para uma etapa futura */}
             <span
               aria-hidden="true"
-              className="flex h-11 w-9 shrink-0 items-center justify-center rounded-md border border-ink-200 bg-surface-alt text-brand-blue-600"
+              className="flex h-11 w-9 shrink-0 items-center justify-center rounded-md border border-blue-100 bg-gradient-to-br from-blue-50 to-white text-brand-blue-600"
             >
               <Award className="h-5 w-5" strokeWidth={2} />
             </span>
@@ -31,7 +34,7 @@ export default function RecentCertificatesCard() {
             <button
               type="button"
               aria-label={`Baixar certificado ${certificate.title}`}
-              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-ink-500 transition-colors duration-150 hover:bg-ink-100 hover:text-ink-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue-500/30"
+              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-ink-500 transition-colors duration-150 hover:bg-ink-100 hover:text-brand-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue-500/30"
             >
               <Download className="h-4 w-4" strokeWidth={2} aria-hidden="true" />
             </button>
