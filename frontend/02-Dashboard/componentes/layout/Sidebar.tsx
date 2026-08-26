@@ -1,0 +1,84 @@
+import {
+  LayoutDashboard,
+  Route,
+  BookOpen,
+  GraduationCap,
+  ClipboardCheck,
+  Award,
+  BarChart3,
+  User,
+  Settings,
+  Headset,
+  ArrowUpRight,
+  type LucideIcon,
+} from 'lucide-react'
+import etpSymbol from '../../etp-symbol.svg'
+import { navItems, type NavItemId } from '../../dashboard.mock'
+
+const icons: Record<NavItemId, LucideIcon> = {
+  dashboard: LayoutDashboard,
+  trilhas: Route,
+  cursos: BookOpen,
+  'meus-cursos': GraduationCap,
+  avaliacoes: ClipboardCheck,
+  certificados: Award,
+  relatorios: BarChart3,
+  perfil: User,
+  configuracoes: Settings,
+}
+
+type SidebarProps = {
+  activeItem: NavItemId
+  onNavigate?: (id: NavItemId) => void
+}
+
+export default function Sidebar({ activeItem, onNavigate }: SidebarProps) {
+  return (
+    <aside className="dashboard-sidebar dashboard-scrollarea flex h-full w-[268px] shrink-0 flex-col overflow-y-auto px-4 py-6">
+      <div className="flex items-center gap-2.5 px-2 pb-7">
+        <img src={etpSymbol} alt="" className="h-9 w-9 shrink-0 object-contain" />
+        <span className="text-[19px] font-bold tracking-[-0.02em] text-white">ETP Systems</span>
+      </div>
+
+      <nav className="flex flex-1 flex-col gap-1" aria-label="Navegação principal">
+        {navItems.map((item) => {
+          const Icon = icons[item.id]
+          const isActive = item.id === activeItem
+          return (
+            <button
+              key={item.id}
+              type="button"
+              onClick={() => onNavigate?.(item.id)}
+              aria-current={isActive ? 'page' : undefined}
+              className={`flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-left text-sm font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan-400/40 ${
+                isActive
+                  ? 'bg-brand-blue-600 text-white'
+                  : 'text-white/65 hover:bg-white/[0.06] hover:text-white'
+              }`}
+            >
+              <Icon className="h-[18px] w-[18px] shrink-0" strokeWidth={2} aria-hidden="true" />
+              {item.label}
+            </button>
+          )
+        })}
+      </nav>
+
+      <div className="mt-6 rounded-2xl border border-white/10 bg-white/[0.05] p-4">
+        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-cyan-500/15 text-brand-cyan-400">
+          <Headset className="h-[18px] w-[18px]" strokeWidth={2} aria-hidden="true" />
+        </div>
+        <p className="mt-3 text-sm font-semibold text-white">Precisa de ajuda?</p>
+        <p className="mt-1 text-xs leading-relaxed text-white/55">
+          Nossa equipe está pronta para apoiar sua jornada.
+        </p>
+        <button
+          type="button"
+          className="mt-3 flex w-full items-center justify-center gap-1.5 rounded-lg bg-brand-cyan-500 px-3 py-2 text-xs font-semibold text-navy-950 transition-colors duration-150 hover:bg-brand-cyan-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan-400/50"
+        >
+          Central de Ajuda
+          <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={2.5} aria-hidden="true" />
+        </button>
+      </div>
+    </aside>
+  )
+}

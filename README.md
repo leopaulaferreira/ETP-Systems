@@ -145,6 +145,10 @@ ETP-Systems/
 │
 ├── backend/
 ├── frontend/
+│   ├── 01 - LOGIN/
+│   │   └── README.md
+│   └── 02-Dashboard/
+│       └── README.md
 ├── database/
 ├── docs/
 │
@@ -166,10 +170,22 @@ git clone https://github.com/leopaulaferreira/ETP-Systems.git
 cd ETP-Systems
 ```
 
-## 2️⃣ Frontend
+## 2️⃣ Tela de Login
 
 ```bash
-cd frontend
+cd "frontend/01 - LOGIN"
+npm install
+npm run dev
+```
+
+Acesse `http://localhost:5173`.
+
+## 3️⃣ Dashboard
+
+Em outro terminal:
+
+```bash
+cd "frontend/02-Dashboard"
 npm install
 npm run dev
 ```
