@@ -3,6 +3,10 @@
   font-family: "Manrope Variable", "Manrope", system-ui, "Segoe UI", sans-serif;
 }
 
+.login-illustration {
+  aspect-ratio: 1080 / 950;
+}
+
 .login-language-menu {
   animation: login-menu-in 160ms ease-out both;
   transform-origin: top right;
@@ -93,6 +97,10 @@
     line-height: 1.5rem !important;
   }
 
+  .login-illustration {
+    max-width: 200px !important;
+  }
+
   .login-features {
     margin-bottom: 1rem !important;
   }
@@ -169,6 +177,10 @@
 
   .login-feature-subtitle {
     display: none;
+  }
+
+  .login-illustration {
+    display: none !important;
   }
 }
 

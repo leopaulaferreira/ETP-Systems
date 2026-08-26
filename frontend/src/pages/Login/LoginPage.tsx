@@ -21,6 +21,7 @@ import Input from '../../components/ui/Input'
 import Checkbox from '../../components/ui/Checkbox'
 import { GoogleIcon, MicrosoftIcon } from './components/BrandIcons'
 import LoginBackdrop from './components/LoginBackdrop'
+import LoginIllustration from './components/LoginIllustration'
 import { useAuth } from '../../auth/AuthContext'
 import etpSymbol from '../../assets/etp-symbol.svg'
 import { languageOptions, loginTranslations, type Locale } from './loginTranslations'
@@ -166,11 +167,6 @@ export default function LoginPage() {
         {/* Painel de marca */}
         <section className="login-brand-panel relative hidden h-full flex-col justify-between overflow-hidden px-12 pb-10 pt-12 lg:flex lg:w-[52%] xl:px-20 xl:pb-14 xl:pt-16">
           <div className="login-brand-copy relative z-10 flex max-w-[620px] flex-1 flex-col justify-center gap-6 pb-10">
-            <span className="inline-flex w-fit items-center gap-2 rounded-full border border-cyan-300/15 bg-gradient-to-r from-cyan-300/[0.08] to-blue-600/[0.08] px-4 py-2 text-xs font-medium tracking-wide text-white/75 backdrop-blur-sm">
-              <span className="h-1.5 w-1.5 rounded-full bg-gradient-to-br from-cyan-300 to-blue-500 shadow-[0_0_12px_rgba(103,232,249,0.55)]" />
-              {copy.badge}
-            </span>
-
             <h1 className="text-balance text-[42px] font-semibold leading-[1.08] tracking-[-0.035em] text-white xl:text-[56px]">
               {copy.headline}{' '}
               <span className="bg-gradient-to-r from-cyan-200 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
@@ -179,6 +175,8 @@ export default function LoginPage() {
             </h1>
 
             <p className="max-w-lg text-[15px] leading-7 text-slate-300/75 xl:text-base">{copy.description}</p>
+
+            <LoginIllustration />
           </div>
 
           <ul className="login-features relative z-10 mb-7 grid w-full max-w-[600px] grid-cols-4 divide-x divide-white/[0.08]">
