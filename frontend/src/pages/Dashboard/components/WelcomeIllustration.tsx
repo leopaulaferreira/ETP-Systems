@@ -1,4 +1,4 @@
-import dashboardHeroLearning from '../../../assets/illustrations/dashboard-hero-learning.webp'
+import dashboardHeroLearning from '../../../assets/illustrations/dashboard-hero-learning-dark.webp'
 
 export default function WelcomeIllustration() {
   return (

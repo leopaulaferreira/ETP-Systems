@@ -18,7 +18,7 @@ export default function TrilhasFilters({
   onSelectLevel,
 }: TrilhasFiltersProps) {
   return (
-    <div className="flex flex-col gap-4 rounded-[20px] border border-ink-200/70 bg-white p-4 shadow-[0_10px_28px_-20px_rgba(15,23,42,0.35)] sm:p-5 xl:flex-row xl:items-center xl:gap-5">
+    <div className="flex flex-col gap-4 rounded-[20px] border border-ink-200/70 bg-panel p-4 shadow-card sm:p-5 xl:flex-row xl:items-center xl:gap-5">
       <FilterGroup label="Categorias">
         {categories.map((category) => (
           <FilterPill
@@ -66,7 +66,7 @@ function FilterPill({ label, isActive, onClick }: { label: string; isActive: boo
       className={`min-h-9 rounded-full border px-4 py-2 text-[13px] font-bold leading-none transition-[background-color,border-color,color,box-shadow,transform] duration-150 hover:-translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue-500/35 focus-visible:ring-offset-2 motion-reduce:transform-none ${
         isActive
           ? 'border-brand-blue-600 bg-brand-blue-600 text-white shadow-[0_6px_14px_-7px_rgba(37,99,235,0.85)]'
-          : 'border-ink-200/90 bg-surface/60 text-ink-700 hover:border-brand-blue-300 hover:bg-blue-50 hover:text-brand-blue-700 hover:shadow-sm'
+          : 'border-ink-200/90 bg-panel-alt text-ink-700 hover:border-brand-blue-500/45 hover:bg-brand-blue-500/10 hover:text-brand-blue-400 hover:shadow-sm'
       }`}
     >
       {label}

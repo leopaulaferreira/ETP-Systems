@@ -15,19 +15,22 @@
   --color-brand-blue-700: #1d4ed8;
   --color-brand-blue-600: #2563eb;
   --color-brand-blue-500: #3b82f6;
+  --color-brand-blue-400: #60a5fa;
 
   --color-brand-cyan-500: #0ea5e9;
   --color-brand-cyan-400: #22c3ee;
 
-  --color-surface: #f5f7fb;
-  --color-surface-alt: #eef1f7;
+  --color-surface: #070c18;
+  --color-surface-alt: #0a1224;
+  --color-panel: #0d172b;
+  --color-panel-alt: #111e36;
 
-  --color-ink-900: #0f172a;
-  --color-ink-700: #334155;
-  --color-ink-500: #64748b;
-  --color-ink-400: #94a3b8;
-  --color-ink-200: #e2e8f0;
-  --color-ink-100: #eef2f7;
+  --color-ink-900: #f8fafc;
+  --color-ink-700: #cbd5e1;
+  --color-ink-500: #94a3b8;
+  --color-ink-400: #64748b;
+  --color-ink-200: #26344f;
+  --color-ink-100: #18243d;
 
-  --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.04), 0 12px 32px -12px rgba(15, 23, 42, 0.12);
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.24), 0 18px 42px -20px rgba(0, 0, 0, 0.72);
 }

@@ -3,20 +3,20 @@ import { progressOverview, type ProgressItem } from '../../../mocks/dashboard.mo
 
 /** Mesmo esquema de cores de MetricCard (StatsGrid), já que cobrem as mesmas 4 métricas. */
 const accentConfig: Record<ProgressItem['icon'], { icon: LucideIcon; badgeClass: string; barClass: string }> = {
-  trilhas: { icon: MapPinned, badgeClass: 'border-blue-100 bg-blue-50 text-blue-600', barClass: 'from-blue-600 to-cyan-400' },
-  cursos: { icon: BookCheck, badgeClass: 'border-emerald-100 bg-emerald-50 text-emerald-600', barClass: 'from-emerald-500 to-teal-400' },
-  horas: { icon: TimerReset, badgeClass: 'border-orange-100 bg-orange-50 text-orange-600', barClass: 'from-orange-500 to-amber-400' },
-  certificados: { icon: BadgeCheck, badgeClass: 'border-violet-100 bg-violet-50 text-violet-600', barClass: 'from-violet-600 to-fuchsia-400' },
+  trilhas: { icon: MapPinned, badgeClass: 'border-blue-400/20 bg-blue-400/10 text-blue-400', barClass: 'from-blue-600 to-cyan-400' },
+  cursos: { icon: BookCheck, badgeClass: 'border-emerald-400/20 bg-emerald-400/10 text-emerald-400', barClass: 'from-emerald-500 to-teal-400' },
+  horas: { icon: TimerReset, badgeClass: 'border-orange-400/20 bg-orange-400/10 text-orange-400', barClass: 'from-orange-500 to-amber-400' },
+  certificados: { icon: BadgeCheck, badgeClass: 'border-violet-400/20 bg-violet-400/10 text-violet-400', barClass: 'from-violet-600 to-fuchsia-400' },
 }
 
 export default function ProgressOverviewCard() {
   return (
-    <section className="flex h-full flex-col gap-4 rounded-[22px] border border-ink-200/70 bg-white p-5 shadow-[0_12px_34px_-24px_rgba(15,23,42,0.4)] sm:p-6">
+    <section className="flex h-full flex-col gap-4 rounded-[22px] border border-ink-200/70 bg-panel p-5 shadow-card sm:p-6">
       <div className="flex items-center justify-between gap-3">
         <h2 className="text-[18px] font-extrabold tracking-[-0.015em] text-ink-900">Meu progresso</h2>
         <button
           type="button"
-          className="group flex shrink-0 items-center gap-1.5 rounded-lg px-2 py-1.5 text-[13px] font-bold text-brand-blue-600 transition-colors duration-150 hover:bg-blue-50 hover:text-brand-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue-500/30"
+          className="group flex shrink-0 items-center gap-1.5 rounded-lg px-2 py-1.5 text-[13px] font-bold text-brand-blue-400 transition-colors duration-150 hover:bg-brand-blue-500/10 hover:text-brand-cyan-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue-500/30"
         >
           Ver relatório
           <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" strokeWidth={2.5} aria-hidden="true" />

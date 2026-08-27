@@ -13,14 +13,14 @@ export default function ContinueLearningCard() {
   const data = continueLearning
 
   return (
-    <section className="flex flex-col gap-5 rounded-[22px] border border-ink-200/70 bg-white p-5 shadow-[0_12px_34px_-24px_rgba(15,23,42,0.4)] sm:p-6">
+    <section className="flex flex-col gap-5 rounded-[22px] border border-ink-200/70 bg-panel p-5 shadow-card sm:p-6">
       <div className="flex items-center justify-between gap-3">
         <h2 className="text-[19px] font-extrabold tracking-[-0.015em] text-ink-900 sm:text-xl">
           Continuar aprendendo
         </h2>
         <button
           type="button"
-          className="group flex shrink-0 items-center gap-1.5 rounded-lg px-2 py-1.5 text-[13px] font-bold text-brand-blue-600 transition-colors duration-150 hover:bg-blue-50 hover:text-brand-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue-500/30"
+          className="group flex shrink-0 items-center gap-1.5 rounded-lg px-2 py-1.5 text-[13px] font-bold text-brand-blue-400 transition-colors duration-150 hover:bg-brand-blue-500/10 hover:text-brand-cyan-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue-500/30"
         >
           <span className="hidden sm:inline">Ver minhas trilhas</span>
           <ArrowRight
@@ -52,7 +52,7 @@ export default function ContinueLearningCard() {
 
         <div className="flex min-w-0 flex-1 flex-col justify-between gap-4 py-0.5">
           <div className="flex flex-col items-start gap-2.5">
-            <span className="rounded-full border border-brand-blue-500/15 bg-blue-50 px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-[0.12em] text-brand-blue-600">
+            <span className="rounded-full border border-brand-blue-500/20 bg-brand-blue-500/10 px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-[0.12em] text-brand-blue-400">
               {data.badge}
             </span>
             <h3 className="text-[23px] font-extrabold leading-tight tracking-[-0.02em] text-ink-900 sm:text-2xl">
@@ -64,7 +64,7 @@ export default function ContinueLearningCard() {
           <div className="flex flex-col gap-2">
             <div className="flex items-center justify-between text-[13px]">
               <span className="font-bold text-ink-700">Seu progresso</span>
-              <span className="font-extrabold text-brand-blue-600">{data.progressPercent}%</span>
+              <span className="font-extrabold text-brand-blue-400">{data.progressPercent}%</span>
             </div>
             <div className="h-2.5 w-full overflow-hidden rounded-full bg-ink-100 shadow-inner">
               <div

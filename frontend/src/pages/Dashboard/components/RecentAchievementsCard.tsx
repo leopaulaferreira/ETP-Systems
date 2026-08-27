@@ -2,19 +2,19 @@ import { ShieldCheck, Flame, Compass, ArrowRight, type LucideIcon } from 'lucide
 import { achievements, type Achievement } from '../../../mocks/dashboard.mock'
 
 const badgeConfig: Record<Achievement['badge'], { icon: LucideIcon; tile: string; iconClass: string }> = {
-  defensor: { icon: ShieldCheck, tile: 'border-blue-100 bg-blue-50', iconClass: 'bg-blue-600 text-white' },
-  sequencia: { icon: Flame, tile: 'border-amber-100 bg-amber-50', iconClass: 'bg-amber-500 text-white' },
-  explorador: { icon: Compass, tile: 'border-violet-100 bg-violet-50', iconClass: 'bg-violet-600 text-white' },
+  defensor: { icon: ShieldCheck, tile: 'border-blue-400/20 bg-blue-400/10', iconClass: 'bg-blue-600 text-white' },
+  sequencia: { icon: Flame, tile: 'border-amber-400/20 bg-amber-400/10', iconClass: 'bg-amber-500 text-white' },
+  explorador: { icon: Compass, tile: 'border-violet-400/20 bg-violet-400/10', iconClass: 'bg-violet-600 text-white' },
 }
 
 export default function RecentAchievementsCard() {
   return (
-    <section className="flex h-full flex-col gap-4 rounded-[22px] border border-ink-200/70 bg-white p-5 shadow-[0_12px_34px_-24px_rgba(15,23,42,0.4)] sm:p-6">
+    <section className="flex h-full flex-col gap-4 rounded-[22px] border border-ink-200/70 bg-panel p-5 shadow-card sm:p-6">
       <div className="flex items-center justify-between gap-3">
         <h2 className="text-[18px] font-extrabold tracking-[-0.015em] text-ink-900">Conquistas recentes</h2>
         <button
           type="button"
-          className="group flex shrink-0 items-center gap-1.5 rounded-lg px-2 py-1.5 text-[13px] font-bold text-brand-blue-600 transition-colors duration-150 hover:bg-blue-50 hover:text-brand-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue-500/30"
+          className="group flex shrink-0 items-center gap-1.5 rounded-lg px-2 py-1.5 text-[13px] font-bold text-brand-blue-400 transition-colors duration-150 hover:bg-brand-blue-500/10 hover:text-brand-cyan-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue-500/30"
         >
           Ver todas
           <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" strokeWidth={2.5} aria-hidden="true" />
@@ -30,7 +30,7 @@ export default function RecentAchievementsCard() {
               className="-mx-2 flex items-center gap-3 rounded-xl px-2 py-3.5 transition-colors duration-150 first:pt-0 last:pb-0 hover:bg-ink-100/60"
             >
               <span className={`relative flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-2xl border ${tile}`}>
-                <span className={`flex h-8 w-8 items-center justify-center rounded-xl shadow-sm ${iconClass}`}>
+                <span className={`flex h-8 w-8 items-center justify-center rounded-xl shadow-[0_8px_20px_-10px_rgba(0,0,0,0.9)] ${iconClass}`}>
                   <Icon className="h-[18px] w-[18px]" strokeWidth={1.9} aria-hidden="true" />
                 </span>
               </span>

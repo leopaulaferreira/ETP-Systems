@@ -24,7 +24,7 @@ export default function Topbar({ isMenuOpen = false, onOpenMenu }: TopbarProps) 
   }
 
   return (
-    <header className="flex h-[92px] shrink-0 items-center justify-between gap-4 border-b border-ink-200 bg-white px-5 sm:px-8">
+    <header className="flex h-[92px] shrink-0 items-center justify-between gap-4 border-b border-ink-200 bg-panel/95 px-5 backdrop-blur-xl sm:px-8">
       <button
         type="button"
         id="mobile-menu-button"
@@ -38,7 +38,7 @@ export default function Topbar({ isMenuOpen = false, onOpenMenu }: TopbarProps) 
         <Menu className="h-5 w-5" strokeWidth={2} aria-hidden="true" />
       </button>
 
-      <div className="flex max-w-md flex-1 items-center gap-2.5 rounded-xl border border-ink-200 bg-white px-3.5 py-3 transition-[border-color,box-shadow] duration-150 focus-within:border-brand-blue-500 focus-within:ring-2 focus-within:ring-brand-blue-500/15">
+      <div className="flex max-w-md flex-1 items-center gap-2.5 rounded-xl border border-ink-200 bg-panel-alt px-3.5 py-3 transition-[border-color,box-shadow] duration-150 focus-within:border-brand-blue-500 focus-within:ring-2 focus-within:ring-brand-blue-500/15">
         <Search className="h-[18px] w-[18px] shrink-0 text-ink-400" strokeWidth={2} aria-hidden="true" />
         <input
           type="search"
@@ -95,7 +95,7 @@ export default function Topbar({ isMenuOpen = false, onOpenMenu }: TopbarProps) 
           {menuOpen && (
             <div
               role="menu"
-              className="absolute right-0 top-full mt-2 w-44 overflow-hidden rounded-xl border border-ink-200 bg-white p-1.5 shadow-card"
+              className="absolute right-0 top-full mt-2 w-44 overflow-hidden rounded-xl border border-ink-200 bg-panel p-1.5 shadow-card"
             >
               <button
                 type="button"

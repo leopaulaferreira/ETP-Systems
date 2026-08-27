@@ -46,7 +46,7 @@ export default function TrilhasPage() {
       <div className="flex justify-center pb-1 pt-0.5">
         <button
           type="button"
-          className="group flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-bold text-brand-blue-600 transition-colors duration-150 hover:bg-brand-blue-600/[0.06] hover:text-brand-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue-500/30"
+          className="group flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-bold text-brand-blue-400 transition-colors duration-150 hover:bg-brand-blue-500/10 hover:text-brand-cyan-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue-500/30"
         >
           Ver todas as trilhas
           <ArrowRight

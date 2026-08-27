@@ -12,8 +12,8 @@ export default function ComingSoonPage() {
   const label = navItems.find((item) => item.to === location.pathname)?.label ?? 'Em breve'
 
   return (
-    <div className="flex flex-1 flex-col items-center justify-center gap-4 rounded-2xl border border-dashed border-ink-200 bg-white py-24 text-center">
-      <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50 text-brand-blue-600">
+    <div className="flex flex-1 flex-col items-center justify-center gap-4 rounded-2xl border border-dashed border-ink-200 bg-panel py-24 text-center shadow-card">
+      <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-brand-blue-500/20 bg-brand-blue-500/10 text-brand-blue-400">
         <Construction className="h-6 w-6" strokeWidth={2} aria-hidden="true" />
       </div>
       <div className="flex flex-col gap-1">
