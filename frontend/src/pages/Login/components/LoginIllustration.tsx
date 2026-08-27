@@ -1,43 +1,22 @@
-import { useEffect, useState } from 'react'
-import { Lottie } from 'lottie-react'
-import animationData from '../../../assets/animations/login-student.json'
-
-function usePrefersReducedMotion() {
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(
-    () => window.matchMedia('(prefers-reduced-motion: reduce)').matches,
-  )
-
-  useEffect(() => {
-    const query = window.matchMedia('(prefers-reduced-motion: reduce)')
-    function handleChange(event: MediaQueryListEvent) {
-      setPrefersReducedMotion(event.matches)
-    }
-    query.addEventListener('change', handleChange)
-    return () => query.removeEventListener('change', handleChange)
-  }, [])
-
-  return prefersReducedMotion
-}
+import loginHeroLearning from '../../../assets/illustrations/login-hero-learning.webp'
 
 /**
  * Ilustração decorativa do painel de marca do Login.
  *
- * Animação Lottie local ("STUDENT" — src/assets/animations/login-student.json),
- * puramente decorativa: sem controles, não clicável, aria-hidden. Respeita
- * prefers-reduced-motion (fica parada no primeiro quadro em vez de tocar em
- * loop, mantendo o mesmo espaço reservado no layout).
+ * Asset estático local, puramente decorativo e sem dependência de hotlink.
  */
 export default function LoginIllustration() {
-  const prefersReducedMotion = usePrefersReducedMotion()
-
   return (
-    <div aria-hidden="true" className="login-illustration pointer-events-none w-full max-w-[280px] xl:max-w-[320px]">
-      <Lottie
-        key={prefersReducedMotion ? 'reduced-motion' : 'motion'}
-        src={animationData}
-        loop={!prefersReducedMotion}
-        autoplay={!prefersReducedMotion}
-        className="h-full w-full"
+    <div
+      aria-hidden="true"
+      className="login-illustration pointer-events-none w-full max-w-[280px] xl:max-w-[300px]"
+    >
+      <img
+        src={loginHeroLearning}
+        alt=""
+        width="849"
+        height="900"
+        className="h-auto w-full object-contain drop-shadow-[0_24px_34px_rgba(0,185,255,0.12)]"
       />
     </div>
   )

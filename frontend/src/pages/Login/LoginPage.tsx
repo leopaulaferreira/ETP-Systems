@@ -165,62 +165,68 @@ export default function LoginPage() {
 
       <div className="login-main relative z-10 flex h-full w-full pt-[84px] lg:pt-[96px]">
         {/* Painel de marca */}
-        <section className="login-brand-panel relative hidden h-full flex-col justify-between overflow-hidden px-12 pb-10 pt-12 lg:flex lg:w-[52%] xl:px-20 xl:pb-14 xl:pt-16">
-          <div className="login-brand-copy relative z-10 flex max-w-[620px] flex-1 flex-col justify-center gap-6 pb-10">
-            <h1 className="text-balance text-[42px] font-semibold leading-[1.08] tracking-[-0.035em] text-white xl:text-[56px]">
+        <section className="login-brand-panel relative hidden h-full flex-col justify-between overflow-hidden px-12 pb-10 pt-12 min-[1180px]:flex min-[1180px]:w-[52%] xl:px-20 xl:pb-14 xl:pt-16">
+          <div className="login-brand-copy relative z-10 flex max-w-[620px] flex-1 flex-col justify-center gap-6 pb-4">
+            <h1 className="text-balance text-[44px] font-[650] leading-[1.065] tracking-[-0.042em] text-white xl:text-[54px] 2xl:text-[58px]">
               {copy.headline}{' '}
               <span className="bg-gradient-to-r from-cyan-200 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
                 {copy.headlineAccent}
               </span>
             </h1>
 
-            <p className="max-w-lg text-[15px] leading-7 text-slate-300/75 xl:text-base">{copy.description}</p>
+            <p className="max-w-lg text-[15.5px] leading-[1.68] text-slate-200/70 xl:text-base">
+              {copy.description}
+            </p>
 
             <LoginIllustration />
           </div>
 
-          <ul className="login-features relative z-10 mb-7 grid w-full max-w-[600px] grid-cols-4 divide-x divide-white/[0.08]">
-            {copy.features.map((feature, index) => {
-              const Icon = featureIcons[index] ?? GraduationCap
-              const accentClass = featureAccentClasses[index] ?? featureAccentClasses[0]
+          <div className="login-brand-footer relative z-10 flex flex-col gap-4">
+            <ul className="login-features grid w-full max-w-[600px] grid-cols-4 divide-x divide-white/[0.08]">
+              {copy.features.map((feature, index) => {
+                const Icon = featureIcons[index] ?? GraduationCap
+                const accentClass = featureAccentClasses[index] ?? featureAccentClasses[0]
 
-              return (
-                <li
-                  key={feature.title}
-                  className="login-feature group flex min-w-0 flex-col items-center px-3 text-center first:pl-0 last:pr-0"
-                >
-                  <span
-                    className={`login-feature-icon mb-2.5 flex h-9 w-9 items-center justify-center rounded-xl border transition-[transform,box-shadow] duration-200 group-hover:-translate-y-0.5 group-hover:shadow-[0_10px_24px_-12px_currentColor] motion-reduce:transform-none motion-reduce:transition-none ${accentClass}`}
+                return (
+                  <li
+                    key={feature.title}
+                    className="login-feature group flex min-w-0 flex-col items-center px-3 text-center first:pl-0 last:pr-0"
                   >
-                    <Icon className="h-[18px] w-[18px]" strokeWidth={1.8} />
-                  </span>
-                  <span className="text-[11px] font-semibold leading-4 text-white/75 xl:text-xs">{feature.title}</span>
-                  <span className="login-feature-subtitle text-[10px] leading-4 text-white/42 xl:text-[11px]">
-                    {feature.subtitle}
-                  </span>
-                </li>
-              )
-            })}
-          </ul>
+                    <span
+                      className={`login-feature-icon mb-3 flex h-10 w-10 items-center justify-center rounded-[13px] border transition-[transform,box-shadow] duration-200 group-hover:-translate-y-0.5 group-hover:shadow-[0_10px_24px_-12px_currentColor] motion-reduce:transform-none motion-reduce:transition-none ${accentClass}`}
+                    >
+                      <Icon className="h-5 w-5" strokeWidth={1.8} />
+                    </span>
+                    <span className="text-xs font-semibold leading-4 text-white/82 xl:text-[13px]">
+                      {feature.title}
+                    </span>
+                    <span className="login-feature-subtitle mt-0.5 text-[10.5px] leading-4 text-white/50 xl:text-[11.5px]">
+                      {feature.subtitle}
+                    </span>
+                  </li>
+                )
+              })}
+            </ul>
 
-          <div className="login-brand-security relative z-10 flex items-center gap-2 text-xs text-white/55">
-            <ShieldCheck className="h-4 w-4 text-cyan-300" />
-            {copy.secureLearning}
+            <div className="login-brand-security flex items-center gap-2 text-xs text-white/55">
+              <ShieldCheck className="h-4 w-4 text-cyan-300" />
+              {copy.secureLearning}
+            </div>
           </div>
         </section>
 
         {/* Painel de autenticação */}
-        <section className="login-auth-panel flex h-full w-full flex-1 overflow-y-auto px-5 py-5 sm:px-8 lg:px-6 lg:py-4 xl:px-14">
-          <div className="login-auth-content my-auto flex w-full flex-col items-center gap-4 lg:items-start">
-            <div className="login-card w-full max-w-[440px] rounded-[28px] border border-white/[0.11] bg-[#111b3d]/90 p-6 shadow-[0_28px_80px_-32px_rgba(0,0,0,0.85)] backdrop-blur-2xl sm:p-7">
+        <section className="login-auth-panel flex h-full w-full flex-1 overflow-y-auto px-5 py-5 sm:px-8 min-[1180px]:px-6 min-[1180px]:py-4 xl:px-14">
+          <div className="login-auth-content my-auto flex w-full flex-col items-center gap-4 min-[1180px]:items-start">
+            <div className="login-card w-full max-w-[456px] rounded-[28px] border border-white/[0.12] bg-[#111b3d]/92 p-6 shadow-[0_30px_86px_-34px_rgba(0,0,0,0.88)] backdrop-blur-2xl sm:p-7">
               <div className="login-card-heading mb-5 flex flex-col gap-2 text-left">
-                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300/85">
+                <span className="text-[11.5px] font-bold uppercase tracking-[0.19em] text-cyan-300/90">
                   {copy.welcome}
                 </span>
-                <h2 className="text-[28px] font-semibold leading-tight tracking-[-0.025em] text-white sm:text-[30px]">
+                <h2 className="text-[28px] font-[650] leading-[1.18] tracking-[-0.032em] text-white sm:text-[30px]">
                   {copy.title}
                 </h2>
-                <p className="text-sm leading-6 text-white/60">{copy.subtitle}</p>
+                <p className="text-[14.5px] leading-6 text-white/68">{copy.subtitle}</p>
               </div>
 
               <div
@@ -255,7 +261,7 @@ export default function LoginPage() {
                 </button>
               </div>
 
-              <form className="login-form flex flex-col gap-2.5" onSubmit={handleSubmit} noValidate>
+              <form className="login-form flex flex-col gap-3.5" onSubmit={handleSubmit} noValidate>
                 <Input
                   id="email"
                   label={copy.email}
@@ -305,10 +311,11 @@ export default function LoginPage() {
                     checked={rememberMe}
                     onChange={(event) => setRememberMe(event.target.checked)}
                     tone="dark"
+                    className="text-[13.5px] font-medium"
                   />
                   <a
                     href="#"
-                    className="rounded-sm text-sm font-medium text-white/55 transition-colors hover:text-white/85 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/35 motion-reduce:transition-none"
+                    className="rounded-sm text-[13.5px] font-medium text-white/66 transition-colors hover:text-white/90 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/35 motion-reduce:transition-none"
                   >
                     {copy.recoverPassword}
                   </a>
@@ -318,7 +325,7 @@ export default function LoginPage() {
                   type="submit"
                   loading={loading}
                   loadingLabel={copy.submitting}
-                  className="login-submit-button group mt-1 w-full shadow-[0_14px_36px_-16px_rgba(37,99,235,0.9)] hover:-translate-y-0.5 hover:shadow-[0_18px_42px_-16px_rgba(37,99,235,0.95)]"
+                  className="login-submit-button group mt-0.5 min-h-[50px] w-full shadow-[0_14px_36px_-16px_rgba(37,99,235,0.9)] hover:-translate-y-0.5 hover:shadow-[0_18px_42px_-16px_rgba(37,99,235,0.95)]"
                 >
                   {!loading && (
                     <>
@@ -334,9 +341,9 @@ export default function LoginPage() {
                 </Button>
               </form>
 
-              <div className="login-divider my-5 flex items-center gap-3">
+              <div className="login-divider my-[22px] flex items-center gap-3">
                 <div className="h-px flex-1 bg-white/10" />
-                <span className="text-xs text-white/45">{copy.socialDivider}</span>
+                <span className="text-xs text-white/52">{copy.socialDivider}</span>
                 <div className="h-px flex-1 bg-white/10" />
               </div>
 
@@ -345,23 +352,23 @@ export default function LoginPage() {
                 <SocialButton icon={<MicrosoftIcon />} label="Microsoft" />
               </div>
 
-              <p className="login-signup mt-6 text-center text-sm text-white/60">
+              <p className="login-signup mt-6 text-center text-sm text-white/66">
                 {copy.firstAccess}{' '}
                 <a
                   href="#"
-                  className="rounded-sm font-semibold text-white/65 transition-colors hover:text-white hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/35 motion-reduce:transition-none"
+                  className="rounded-sm font-semibold text-white/78 transition-colors hover:text-white hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/35 motion-reduce:transition-none"
                 >
                   {copy.createAccount} ›
                 </a>
               </p>
             </div>
 
-            <div className="login-auth-footer flex w-full max-w-[440px] flex-col items-center gap-2.5 px-2 text-center">
-              <div className="flex items-center gap-1.5 text-xs text-white/45">
+            <div className="login-auth-footer flex w-full max-w-[456px] flex-col items-center gap-2.5 px-2 text-center">
+              <div className="flex items-center gap-1.5 text-xs text-white/60">
                 <Lock className="h-3.5 w-3.5" />
                 {copy.protectedAccess}
               </div>
-              <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs text-white/45">
+              <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs text-white/58">
                 <a
                   href="#"
                   className="rounded-sm transition-colors hover:text-white/75 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/35 motion-reduce:transition-none"

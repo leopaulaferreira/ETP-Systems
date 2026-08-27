@@ -32,7 +32,10 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className="flex flex-col gap-1.5">
         {label && (
-          <label htmlFor={id} className={`text-sm font-medium ${isDark ? 'text-white/85' : 'text-ink-700'}`}>
+          <label
+            htmlFor={id}
+            className={`${isDark ? 'text-[13.5px] font-semibold text-white/90' : 'text-sm font-medium text-ink-700'}`}
+          >
             {label}
           </label>
         )}
@@ -40,7 +43,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           data-input-control
           className={`flex items-center gap-2 rounded-xl border px-3.5 py-3.5 transition-[border-color,background-color,box-shadow] duration-200 focus-within:ring-2 motion-reduce:transition-none ${
             isDark
-              ? 'bg-white/[0.06] backdrop-blur-sm focus-within:border-brand-cyan-400 focus-within:ring-brand-cyan-400/20'
+              ? 'bg-white/[0.065] backdrop-blur-sm focus-within:border-brand-cyan-400 focus-within:bg-white/[0.085] focus-within:ring-brand-cyan-400/20'
               : 'bg-white focus-within:border-brand-blue-500 focus-within:ring-brand-blue-500/20'
           } ${error ? (isDark ? 'border-red-400/70' : 'border-red-400') : isDark ? 'border-white/15' : 'border-ink-200'}`}
         >
@@ -50,8 +53,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             id={id}
             aria-describedby={describedBy}
             aria-invalid={error ? true : ariaInvalid}
-            className={`w-full min-w-0 bg-transparent text-sm focus:outline-none ${
-              isDark ? 'text-white placeholder:text-white/55' : 'text-ink-900 placeholder:text-ink-500'
+            className={`w-full min-w-0 bg-transparent text-[14.5px] focus:outline-none ${
+              isDark ? 'text-white placeholder:text-white/62' : 'text-ink-900 placeholder:text-ink-500'
             } ${className}`}
             {...rest}
           />
