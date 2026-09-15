@@ -26,7 +26,7 @@ ou
 
 Banco de dados:
 
-- **MySQL**
+- **PostgreSQL**
 
 ---
 
@@ -69,3 +69,14 @@ Configurações da aplicação.
 Fornecer uma **API segura e eficiente** para o funcionamento da plataforma **ETP Systems**.
 
 O backend será responsável por garantir que os dados sejam **processados, armazenados e disponibilizados corretamente para o front-end**.
+
+## Variáveis de ambiente
+
+Copie o arquivo de exemplo para criar a configuração local:
+
+```bash
+cp backend/.env.example backend/.env
+```
+
+A conexão atual usa PostgreSQL em `localhost:5434`, com o banco `etp_db`,
+usuário `etp_user` e senha `etp_password`.

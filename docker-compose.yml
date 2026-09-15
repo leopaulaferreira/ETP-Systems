@@ -9,25 +9,16 @@ services:
       - "/app/01 - LOGIN/node_modules"
     command: sh -c "npm install && npm run dev -- --host"
 
-  # backend:
-  #   build:
-  #     context: ./backend
-  #   ports:
-  #     - "8080:8080"
-  #   depends_on:
-  #     - database
-  #   env_file:
-  #     - ./backend/.env
+  database:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: etp_db
+      POSTGRES_USER: etp_user
+      POSTGRES_PASSWORD: etp_password
+    ports:
+      - "5434:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
 
-  # database:
-  #   image: mysql:8
-  #   environment:
-  #     MYSQL_DATABASE: etp_systems
-  #     MYSQL_ROOT_PASSWORD: root
-  #   ports:
-  #     - "3306:3306"
-  #   volumes:
-  #     - db_data:/var/lib/mysql
-
-# volumes:
-#   db_data:
+volumes:
+  pgdata:
