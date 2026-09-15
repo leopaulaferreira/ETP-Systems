@@ -1,24 +1,38 @@
 services:
   frontend:
     image: node:22-alpine
-    working_dir: "/app/01 - LOGIN"
+    working_dir: /app
     ports:
       - "5173:5173"
     volumes:
       - ./frontend:/app
-      - "/app/01 - LOGIN/node_modules"
+      - /app/node_modules
     command: sh -c "npm install && npm run dev -- --host"
 
+  # backend:
+  #   build:
+  #     context: ./backend
+  #   ports:
+  #     - "8080:8080"
+  #   depends_on:
+  #     - database
+  #   env_file:
+  #     - ./backend/.env
+
   database:
-    image: postgres:16
+    image: mysql:8
+    container_name: etp-db
     environment:
-      POSTGRES_DB: etp_db
-      POSTGRES_USER: etp_user
-      POSTGRES_PASSWORD: etp_password
+      MYSQL_DATABASE: etp_db
+      MYSQL_USER: etp_user
+      MYSQL_PASSWORD: etp_password
+      MYSQL_ROOT_PASSWORD: root
     ports:
-      - "5434:5432"
+      - "3307:3306"
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - mysql_data:/var/lib/mysql
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/schema.sql:ro
+    restart: unless-stopped
 
 volumes:
-  pgdata:
+  mysql_data:
