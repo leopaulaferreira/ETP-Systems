@@ -63,7 +63,7 @@ export default function AppLayout() {
         aria-modal={drawerOpen ? true : undefined}
         aria-label="Navegação principal"
         tabIndex={-1}
-        className={`fixed inset-y-0 left-0 z-50 shrink-0 transform transition-transform duration-200 ease-out focus:outline-none lg:static lg:z-auto lg:translate-x-0 lg:transition-none ${
+        className={`fixed inset-y-0 left-0 z-50 w-[268px] shrink-0 transform transition-transform duration-200 ease-out focus:outline-none lg:static lg:z-auto lg:translate-x-0 lg:transition-none ${
           drawerOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >

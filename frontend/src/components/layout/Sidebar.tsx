@@ -12,7 +12,7 @@ export default function Sidebar({ onNavigate }: SidebarProps) {
   return (
     <aside
       tabIndex={-1}
-      className="app-sidebar app-scrollarea flex h-full w-[268px] shrink-0 flex-col overflow-y-auto px-4 py-6 focus:outline-none"
+      className="app-sidebar app-scrollarea flex h-full w-full shrink-0 flex-col overflow-y-auto px-4 py-6 focus:outline-none"
     >
       <div className="flex items-center gap-2.5 px-2 pb-7">
         <img src={etpSymbol} alt="" className="h-9 w-9 shrink-0 object-contain" />
