@@ -1,4 +1,4 @@
-import { CalendarDays, Clock3, MoreVertical, PlayCircle } from 'lucide-react'
+import { Clock3, MoreVertical, PlayCircle } from 'lucide-react'
 import { continueCourse } from '../../../mocks/meus-cursos.mock'
 import CourseThumbnail from './CourseThumbnail'
 
@@ -57,10 +57,6 @@ export default function ContinueCourseCard() {
               <span className="flex items-center gap-1.5 text-[11px] font-semibold text-ink-500">
                 <Clock3 className="h-3.5 w-3.5" />
                 Tempo total: {continueCourse.duration}
-              </span>
-              <span className="flex items-center gap-1.5 text-[11px] font-semibold text-ink-500">
-                <CalendarDays className="h-3.5 w-3.5" />
-                Concluído em: {continueCourse.completedAt}
               </span>
             </div>
           </div>

@@ -26,7 +26,6 @@ export const continueCourse: CourseItem = {
   progress: 65,
   lastLesson: 'Tipos de Ameaças e Vulnerabilidades',
   duration: '6h 30m',
-  completedAt: '12/05/2024',
 }
 
 export const ongoingCourses: CourseItem[] = [
