@@ -15,7 +15,7 @@ const tabs: { id: CourseTab; label: string; icon: typeof Clock3 }[] = [
 
 export default function CourseTabs({ activeTab, onChange }: CourseTabsProps) {
   return (
-    <div role="tablist" aria-label="Situação dos meus cursos" className="flex flex-wrap gap-x-5 gap-y-2 border-b border-ink-200/70">
+    <div role="tablist" aria-label="Situação dos meus cursos" className="flex justify-between gap-2 border-b border-ink-200/70 sm:justify-start sm:gap-5">
       {tabs.map(({ id, label, icon: Icon }, index) => (
         <button
           key={id}
@@ -35,7 +35,7 @@ export default function CourseTabs({ activeTab, onChange }: CourseTabsProps) {
             onChange(tabs[nextIndex].id)
             document.getElementById(`course-tab-${tabs[nextIndex].id}`)?.focus()
           }}
-          className={`flex min-h-11 items-center gap-2 border-b-2 px-1 pb-3 text-sm font-bold transition-colors focus-visible:rounded-t-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue-400 ${activeTab === id ? 'border-brand-blue-500 text-brand-blue-400' : 'border-transparent text-ink-500 hover:border-ink-200 hover:text-ink-700'}`}
+          className={`flex min-h-11 items-center gap-1.5 whitespace-nowrap border-b-2 px-0.5 pb-3 text-xs font-bold transition-colors focus-visible:rounded-t-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue-400 sm:gap-2 sm:px-1 sm:text-sm ${activeTab === id ? 'border-brand-blue-500 text-brand-blue-400' : 'border-transparent text-ink-500 hover:border-ink-200 hover:text-ink-700'}`}
         >
           <Icon className="h-4 w-4" strokeWidth={2} aria-hidden="true" />
           {label}
