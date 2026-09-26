@@ -27,7 +27,21 @@ export default function CourseDetailsDialog({ course, isSaved, onClose, onToggle
   }, [])
 
   return (
-    <dialog ref={dialogRef} aria-labelledby="course-details-title" onCancel={onClose} onClick={(event) => { if (event.target === event.currentTarget) onClose() }} className="fixed inset-0 m-auto max-h-[85svh] w-[calc(100%-2rem)] max-w-lg overflow-y-auto rounded-[22px] border border-ink-200 bg-panel p-0 text-ink-900 shadow-card backdrop:bg-navy-950/80 backdrop:backdrop-blur-sm">
+    <dialog ref={dialogRef} aria-labelledby="course-details-title" onCancel={onClose} onClick={(event) => { if (event.target === event.currentTarget) onClose() }}
+      onKeyDown={(event) => {
+        if (event.key !== 'Tab') return
+        const buttons = event.currentTarget.querySelectorAll<HTMLButtonElement>('button:not([disabled])')
+        const first = buttons[0]
+        const last = buttons[buttons.length - 1]
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault()
+          last?.focus()
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault()
+          first?.focus()
+        }
+      }}
+      className="fixed inset-0 m-auto max-h-[85svh] w-[calc(100%-2rem)] max-w-lg overflow-y-auto rounded-[22px] border border-ink-200 bg-panel p-0 text-ink-900 shadow-card backdrop:bg-navy-950/80 backdrop:backdrop-blur-sm">
       <div className="flex flex-col gap-5 p-6 sm:p-8">
         <div className="flex items-start justify-between gap-4">
           <CourseThumbnail thumbnail={course.thumbnail} />
