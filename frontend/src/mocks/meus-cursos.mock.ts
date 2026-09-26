@@ -5,11 +5,13 @@
  * quando a integração com o backend estiver disponível.
  */
 
-export type CourseThumbnailKey = 'security' | 'cloud' | 'data' | 'cybersecurity' | 'ai' | 'lgpd'
+export type CourseThumbnailKey =
+  'security' | 'cloud' | 'data' | 'cybersecurity' | 'ai' | 'lgpd' | 'projects'
 
 export type CourseItem = {
   id: string
   title: string
+  description?: string
   type: 'CURSO' | 'TRILHA'
   thumbnail: CourseThumbnailKey
   progress?: number
@@ -21,12 +23,13 @@ export type CourseItem = {
 export const continueCourse: CourseItem = {
   id: 'fundamentos-seguranca',
   title: 'Fundamentos de Segurança da Informação',
+  description:
+    'Aprenda os principais conceitos, práticas e tecnologias para proteger informações e sistemas contra ameaças digitais.',
   type: 'CURSO',
   thumbnail: 'security',
   progress: 65,
   lastLesson: 'Tipos de Ameaças e Vulnerabilidades',
   duration: '6h 30m',
-  completedAt: '12/05/2024',
 }
 
 export const ongoingCourses: CourseItem[] = [
@@ -82,13 +85,7 @@ export const completedCourses: CourseItem[] = [
 ]
 
 export const savedCourses: CourseItem[] = [
-  {
-    id: 'computacao-nuvem-salvo',
-    title: 'Computação em Nuvem: Conceitos e Aplicações',
-    type: 'CURSO',
-    thumbnail: 'cloud',
-    duration: '4h',
-  },
+  ongoingCourses[1],
   {
     id: 'inteligencia-artificial',
     title: 'Introdução à Inteligência Artificial',
@@ -124,7 +121,7 @@ export const exploreCourses: CourseItem[] = [
     id: 'gestao-projetos',
     title: 'Gestão de Projetos Ágeis com Scrum',
     type: 'CURSO',
-    thumbnail: 'cybersecurity',
+    thumbnail: 'projects',
     duration: '6h',
   },
 ]
