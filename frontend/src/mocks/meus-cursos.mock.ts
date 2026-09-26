@@ -10,6 +10,7 @@ export type CourseThumbnailKey = 'security' | 'cloud' | 'data' | 'cybersecurity'
 export type CourseItem = {
   id: string
   title: string
+  description?: string
   type: 'CURSO' | 'TRILHA'
   thumbnail: CourseThumbnailKey
   progress?: number
@@ -21,6 +22,7 @@ export type CourseItem = {
 export const continueCourse: CourseItem = {
   id: 'fundamentos-seguranca',
   title: 'Fundamentos de Segurança da Informação',
+  description: 'Aprenda os principais conceitos, práticas e tecnologias para proteger informações e sistemas contra ameaças digitais.',
   type: 'CURSO',
   thumbnail: 'security',
   progress: 65,
@@ -81,13 +83,7 @@ export const completedCourses: CourseItem[] = [
 ]
 
 export const savedCourses: CourseItem[] = [
-  {
-    id: 'computacao-nuvem-salvo',
-    title: 'Computação em Nuvem: Conceitos e Aplicações',
-    type: 'CURSO',
-    thumbnail: 'cloud',
-    duration: '4h',
-  },
+  ongoingCourses[1],
   {
     id: 'inteligencia-artificial',
     title: 'Introdução à Inteligência Artificial',

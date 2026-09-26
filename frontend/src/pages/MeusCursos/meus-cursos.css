@@ -1,0 +1,32 @@
+.my-courses-list {
+  container-type: inline-size;
+}
+
+.my-course-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+}
+
+@container (min-width: 400px) {
+  .my-course-row {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+  }
+
+  .my-course-summary,
+  .my-course-actions {
+    grid-column: 1 / -1;
+  }
+}
+
+@container (min-width: 640px) {
+  .my-course-row {
+    grid-template-columns: minmax(0, 1.7fr) minmax(90px, 0.7fr) minmax(0, 1fr) auto;
+  }
+
+  .my-course-summary,
+  .my-course-actions {
+    grid-column: auto;
+  }
+}
