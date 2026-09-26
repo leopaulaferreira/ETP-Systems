@@ -4,14 +4,15 @@ import CourseListCard from './components/CourseListCard'
 import ContinueCourseCard from './components/ContinueCourseCard'
 import CourseTabs, { type CourseTab } from './components/CourseTabs'
 import SideCourseCard from './components/SideCourseCard'
+import MeusCursosHero from './components/MeusCursosHero'
 
 export default function MeusCursosPage() {
   const [activeTab, setActiveTab] = useState<CourseTab>('Em andamento')
 
   return (
     <div className="flex flex-col gap-5 lg:gap-6">
-      <div className="flex flex-col gap-5 rounded-[22px] border border-ink-200/70 bg-panel p-5 shadow-card sm:p-6">
-        <h1 className="text-3xl font-extrabold tracking-[-0.035em] text-ink-900 sm:text-4xl">Meus Cursos</h1>
+      <MeusCursosHero />
+      <div>
         <CourseTabs activeTab={activeTab} onChange={setActiveTab} />
       </div>
 

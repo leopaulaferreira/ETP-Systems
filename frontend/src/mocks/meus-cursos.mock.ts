@@ -5,7 +5,7 @@
  * quando a integração com o backend estiver disponível.
  */
 
-export type CourseThumbnailKey = 'security' | 'cloud' | 'data' | 'cybersecurity' | 'ai' | 'lgpd'
+export type CourseThumbnailKey = 'security' | 'cloud' | 'data' | 'cybersecurity' | 'ai' | 'lgpd' | 'projects'
 
 export type CourseItem = {
   id: string
@@ -123,7 +123,7 @@ export const exploreCourses: CourseItem[] = [
     id: 'gestao-projetos',
     title: 'Gestão de Projetos Ágeis com Scrum',
     type: 'CURSO',
-    thumbnail: 'cybersecurity',
+    thumbnail: 'projects',
     duration: '6h',
   },
 ]
