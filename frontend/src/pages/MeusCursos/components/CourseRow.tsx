@@ -1,58 +1,66 @@
-import { CheckCircle2, MoreVertical, PlayCircle } from 'lucide-react'
+import { ArrowUpRight, Bookmark } from 'lucide-react'
 import { type CourseItem } from '../../../mocks/meus-cursos.mock'
 import CourseThumbnail from './CourseThumbnail'
+import CourseBadge from './CourseBadge'
+import CourseProgress from './CourseProgress'
 
 type CourseRowProps = {
   course: CourseItem
-  completed?: boolean
+  isSaved: boolean
+  onOpen: (course: CourseItem) => void
+  onToggleSave: (course: CourseItem) => void
 }
 
-export default function CourseRow({ course, completed = false }: CourseRowProps) {
+export default function CourseRow({ course, isSaved, onOpen, onToggleSave }: CourseRowProps) {
+  const completed = course.progress === 100
+  const hasStarted = (course.progress ?? 0) > 0
   return (
-    <li className="relative flex flex-col gap-3 border-b border-ink-100 py-4 first:pt-0 last:border-b-0 last:pb-0 lg:grid lg:grid-cols-[minmax(220px,1.25fr)_minmax(130px,0.65fr)_minmax(150px,0.85fr)_auto_auto] lg:items-center lg:gap-5">
-      <div className="flex min-w-0 items-center gap-3">
+    <li className="my-course-row border-b border-ink-100 py-5 first:pt-0 last:border-b-0 last:pb-0">
+      <div className="my-course-summary flex min-w-0 items-center gap-3">
         <CourseThumbnail thumbnail={course.thumbnail} size="small" />
-        <div className="flex min-w-0 flex-col gap-1.5">
-          <span className="w-fit rounded-md border border-brand-cyan-400/20 bg-brand-cyan-400/10 px-1.5 py-0.5 text-[9px] font-extrabold tracking-wide text-brand-cyan-400">
-            {course.type}
-          </span>
-          <h3 className="line-clamp-2 text-[13px] font-extrabold leading-snug text-ink-900">{course.title}</h3>
+        <div className="flex min-w-0 flex-col items-start gap-1.5">
+          <CourseBadge type={course.type} />
+          <h3 className="text-[13px] font-extrabold leading-snug text-ink-900">{course.title}</h3>
         </div>
       </div>
-
-      <div className="flex items-center gap-3 lg:block">
-        <div className="flex items-center justify-between text-[11px] font-bold text-ink-500 lg:mb-2">
-          <span>{completed ? 'Concluído' : `${course.progress}%`}</span>
-          {completed && <CheckCircle2 className="h-4 w-4 text-emerald-400 lg:hidden" />}
-        </div>
-        <div className="h-2 flex-1 overflow-hidden rounded-full bg-ink-100">
-          <div
-            className={`h-full rounded-full ${completed ? 'bg-emerald-500' : 'bg-brand-blue-600'}`}
-            style={{ width: `${course.progress ?? 0}%` }}
-          />
-        </div>
-      </div>
-
+      <CourseProgress course={course} />
       <div className="flex min-w-0 flex-col gap-1 text-[11px] font-semibold text-ink-500">
-        <span>{completed ? 'Concluído em' : 'Última aula'}</span>
-        <span className="line-clamp-2 text-ink-700">{completed ? course.completedAt : course.lastLesson}</span>
+        <span>
+          {completed
+            ? 'Concluído em'
+            : hasStarted
+              ? 'Última aula'
+              : course.type === 'TRILHA'
+                ? 'Conteúdo'
+                : 'Duração'}
+        </span>
+        <span className="text-ink-700">
+          {completed ? course.completedAt : hasStarted ? course.lastLesson : course.duration}
+        </span>
       </div>
-
-      <button
-        type="button"
-        className="inline-flex min-h-10 items-center justify-center gap-2 rounded-xl bg-brand-blue-700 px-4 py-2 text-xs font-extrabold text-white transition-colors hover:bg-[#17399c] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue-500 lg:min-w-[100px]"
-      >
-        {completed ? 'Revisar' : 'Continuar'}
-        {!completed && <PlayCircle className="h-3.5 w-3.5" />}
-      </button>
-
-      <button
-        type="button"
-        aria-label={`Mais opções de ${course.title}`}
-        className="absolute right-0 top-4 hidden h-8 w-8 items-center justify-center rounded-lg text-ink-400 hover:bg-ink-100 hover:text-ink-700 lg:relative lg:inset-auto lg:flex"
-      >
-        <MoreVertical className="h-4 w-4" />
-      </button>
+      <div className="my-course-actions flex items-center gap-1.5">
+        <button
+          type="button"
+          onClick={() => onOpen(course)}
+          aria-label={`Ver detalhes de ${course.title}`}
+          className="inline-flex min-h-10 items-center justify-center gap-1.5 rounded-xl border border-brand-blue-500/25 bg-brand-blue-500/10 px-3 py-2 text-xs font-extrabold text-brand-blue-400 transition-colors hover:bg-brand-blue-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue-400"
+        >
+          Ver detalhes <ArrowUpRight className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+        </button>
+        <button
+          type="button"
+          onClick={() => onToggleSave(course)}
+          aria-pressed={isSaved}
+          aria-label={`${isSaved ? 'Remover dos salvos' : 'Salvar'}: ${course.title}`}
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-brand-blue-400 transition-colors hover:bg-brand-blue-500/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue-400"
+        >
+          <Bookmark
+            className="h-4 w-4"
+            fill={isSaved ? 'currentColor' : 'none'}
+            aria-hidden="true"
+          />
+        </button>
+      </div>
     </li>
   )
 }
