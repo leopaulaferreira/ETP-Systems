@@ -7,7 +7,7 @@ import SideCourseCard from './components/SideCourseCard'
 import MeusCursosHero from './components/MeusCursosHero'
 
 export default function MeusCursosPage() {
-  const [activeTab, setActiveTab] = useState<CourseTab>('Em andamento')
+  const [activeTab, setActiveTab] = useState<CourseTab>('ongoing')
 
   return (
     <div className="flex flex-col gap-5 lg:gap-6">
@@ -16,7 +16,8 @@ export default function MeusCursosPage() {
         <CourseTabs activeTab={activeTab} onChange={setActiveTab} />
       </div>
 
-      {activeTab === 'Em andamento' && (
+      <div id="my-courses-panel" role="tabpanel" aria-labelledby={`course-tab-${activeTab}`} tabIndex={0} className="flex flex-col gap-5 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue-400">
+      {activeTab === 'ongoing' && (
         <>
           <div className="grid grid-cols-1 gap-5 xl:grid-cols-[minmax(0,3fr)_minmax(300px,1fr)]">
             <ContinueCourseCard />
@@ -30,16 +31,17 @@ export default function MeusCursosPage() {
         </>
       )}
 
-      {activeTab === 'Concluídos' && (
+      {activeTab === 'completed' && (
         <CourseListCard title="Cursos concluídos" courses={completedCourses} completed />
       )}
 
-      {activeTab === 'Salvos' && (
+      {activeTab === 'saved' && (
         <div className="grid grid-cols-1 gap-5 xl:grid-cols-[minmax(0,3fr)_minmax(300px,1fr)]">
           <CourseListCard title="Cursos salvos" courses={savedCourses} />
           <SideCourseCard title="Continue explorando" actionLabel="Explorar mais cursos" courses={exploreCourses} />
         </div>
       )}
+      </div>
     </div>
   )
 }
