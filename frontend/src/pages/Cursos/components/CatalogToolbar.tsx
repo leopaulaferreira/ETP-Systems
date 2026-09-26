@@ -42,6 +42,7 @@ export default function CatalogToolbar({
         <label className="flex min-w-0 items-center gap-2 rounded-xl border border-ink-200 bg-panel px-4 text-xs font-semibold text-ink-500 focus-within:border-brand-blue-500 focus-within:ring-2 focus-within:ring-brand-blue-500/20">
           <span className="shrink-0">Ordenar por</span>
           <select
+            aria-label="Ordenar por"
             value={filters.order}
             onChange={(event) => onChange({ order: event.target.value as CourseOrder })}
             className="min-h-12 min-w-0 flex-1 bg-panel py-3 text-sm text-ink-700 outline-none"
@@ -77,6 +78,7 @@ export default function CatalogToolbar({
           <label className="flex min-w-0 flex-col gap-2 text-xs font-bold text-ink-500">
             Categoria
             <select
+              aria-label="Categoria"
               value={filters.category}
               onChange={(event) =>
                 onChange({ category: event.target.value as CatalogFilters['category'] })
@@ -92,6 +94,7 @@ export default function CatalogToolbar({
           <label className="flex min-w-0 flex-col gap-2 text-xs font-bold text-ink-500">
             Nível
             <select
+              aria-label="Nível"
               value={filters.level}
               onChange={(event) =>
                 onChange({ level: event.target.value as CatalogFilters['level'] })
