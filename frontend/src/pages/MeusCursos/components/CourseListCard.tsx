@@ -10,22 +10,46 @@ type CourseListCardProps = {
   onToggleSave: (course: CourseItem) => void
 }
 
-export default function CourseListCard({ title, courses, savedIds, onOpen, onToggleSave }: CourseListCardProps) {
+export default function CourseListCard({
+  title,
+  courses,
+  savedIds,
+  onOpen,
+  onToggleSave,
+}: CourseListCardProps) {
   return (
-    <section className="my-courses-list min-w-0 rounded-[22px] border border-ink-200/70 bg-panel p-5 shadow-card sm:p-6" aria-label={title}>
+    <section
+      className="my-courses-list min-w-0 rounded-[22px] border border-ink-200/70 bg-panel p-5 shadow-card sm:p-6"
+      aria-label={title}
+    >
       <div className="mb-5 flex items-center justify-between gap-3">
         <h2 className="text-[18px] font-extrabold tracking-[-0.015em] text-ink-900">{title}</h2>
-        <span className="rounded-full border border-ink-200 bg-panel-alt px-2.5 py-1 text-xs font-bold text-ink-500" aria-label={`${courses.length} itens`}>{courses.length}</span>
+        <span
+          className="rounded-full border border-ink-200 bg-panel-alt px-2.5 py-1 text-xs font-bold text-ink-500"
+          aria-label={`${courses.length} itens`}
+        >
+          {courses.length}
+        </span>
       </div>
       {courses.length > 0 ? (
         <ul className="flex flex-col">
-          {courses.map((course) => <CourseRow key={course.id} course={course} isSaved={savedIds.has(course.id)} onOpen={onOpen} onToggleSave={onToggleSave} />)}
+          {courses.map((course) => (
+            <CourseRow
+              key={course.id}
+              course={course}
+              isSaved={savedIds.has(course.id)}
+              onOpen={onOpen}
+              onToggleSave={onToggleSave}
+            />
+          ))}
         </ul>
       ) : (
         <div className="flex flex-col items-center gap-3 py-10 text-center">
           <BookOpen className="h-8 w-8 text-brand-blue-400" aria-hidden="true" />
           <p className="text-sm font-bold text-ink-700">Nenhum curso por aqui ainda</p>
-          <p className="max-w-xs text-sm leading-6 text-ink-500">Salve os conteúdos que deseja estudar para encontrá-los nesta lista.</p>
+          <p className="max-w-xs text-sm leading-6 text-ink-500">
+            Salve os conteúdos que deseja estudar para encontrá-los nesta lista.
+          </p>
         </div>
       )}
     </section>

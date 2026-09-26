@@ -25,15 +25,40 @@ export default function CourseRow({ course, isSaved, onOpen, onToggleSave }: Cou
       </div>
       <CourseProgress course={course} />
       <div className="flex min-w-0 flex-col gap-1 text-[11px] font-semibold text-ink-500">
-        <span>{completed ? 'Concluído em' : hasStarted ? 'Última aula' : course.type === 'TRILHA' ? 'Conteúdo' : 'Duração'}</span>
-        <span className="text-ink-700">{completed ? course.completedAt : hasStarted ? course.lastLesson : course.duration}</span>
+        <span>
+          {completed
+            ? 'Concluído em'
+            : hasStarted
+              ? 'Última aula'
+              : course.type === 'TRILHA'
+                ? 'Conteúdo'
+                : 'Duração'}
+        </span>
+        <span className="text-ink-700">
+          {completed ? course.completedAt : hasStarted ? course.lastLesson : course.duration}
+        </span>
       </div>
       <div className="my-course-actions flex items-center gap-1.5">
-        <button type="button" onClick={() => onOpen(course)} aria-label={`Ver detalhes de ${course.title}`} className="inline-flex min-h-10 items-center justify-center gap-1.5 rounded-xl border border-brand-blue-500/25 bg-brand-blue-500/10 px-3 py-2 text-xs font-extrabold text-brand-blue-400 transition-colors hover:bg-brand-blue-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue-400">
+        <button
+          type="button"
+          onClick={() => onOpen(course)}
+          aria-label={`Ver detalhes de ${course.title}`}
+          className="inline-flex min-h-10 items-center justify-center gap-1.5 rounded-xl border border-brand-blue-500/25 bg-brand-blue-500/10 px-3 py-2 text-xs font-extrabold text-brand-blue-400 transition-colors hover:bg-brand-blue-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue-400"
+        >
           Ver detalhes <ArrowUpRight className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
         </button>
-        <button type="button" onClick={() => onToggleSave(course)} aria-pressed={isSaved} aria-label={`${isSaved ? 'Remover dos salvos' : 'Salvar'}: ${course.title}`} className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-brand-blue-400 transition-colors hover:bg-brand-blue-500/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue-400">
-          <Bookmark className="h-4 w-4" fill={isSaved ? 'currentColor' : 'none'} aria-hidden="true" />
+        <button
+          type="button"
+          onClick={() => onToggleSave(course)}
+          aria-pressed={isSaved}
+          aria-label={`${isSaved ? 'Remover dos salvos' : 'Salvar'}: ${course.title}`}
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-brand-blue-400 transition-colors hover:bg-brand-blue-500/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue-400"
+        >
+          <Bookmark
+            className="h-4 w-4"
+            fill={isSaved ? 'currentColor' : 'none'}
+            aria-hidden="true"
+          />
         </button>
       </div>
     </li>

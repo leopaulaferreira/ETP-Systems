@@ -15,7 +15,11 @@ const tabs: { id: CourseTab; label: string; icon: typeof Clock3 }[] = [
 
 export default function CourseTabs({ activeTab, onChange }: CourseTabsProps) {
   return (
-    <div role="tablist" aria-label="Situação dos meus cursos" className="flex justify-between gap-2 border-b border-ink-200/70 sm:justify-start sm:gap-5">
+    <div
+      role="tablist"
+      aria-label="Situação dos meus cursos"
+      className="flex justify-between gap-2 border-b border-ink-200/70 sm:justify-start sm:gap-5"
+    >
       {tabs.map(({ id, label, icon: Icon }, index) => (
         <button
           key={id}
@@ -27,9 +31,16 @@ export default function CourseTabs({ activeTab, onChange }: CourseTabsProps) {
           tabIndex={activeTab === id ? 0 : -1}
           onClick={() => onChange(id)}
           onKeyDown={(event) => {
-            const nextIndex = event.key === 'ArrowRight' ? (index + 1) % tabs.length
-              : event.key === 'ArrowLeft' ? (index + tabs.length - 1) % tabs.length
-              : event.key === 'Home' ? 0 : event.key === 'End' ? tabs.length - 1 : null
+            const nextIndex =
+              event.key === 'ArrowRight'
+                ? (index + 1) % tabs.length
+                : event.key === 'ArrowLeft'
+                  ? (index + tabs.length - 1) % tabs.length
+                  : event.key === 'Home'
+                    ? 0
+                    : event.key === 'End'
+                      ? tabs.length - 1
+                      : null
             if (nextIndex === null) return
             event.preventDefault()
             onChange(tabs[nextIndex].id)

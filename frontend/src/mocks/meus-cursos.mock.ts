@@ -5,7 +5,8 @@
  * quando a integração com o backend estiver disponível.
  */
 
-export type CourseThumbnailKey = 'security' | 'cloud' | 'data' | 'cybersecurity' | 'ai' | 'lgpd' | 'projects'
+export type CourseThumbnailKey =
+  'security' | 'cloud' | 'data' | 'cybersecurity' | 'ai' | 'lgpd' | 'projects'
 
 export type CourseItem = {
   id: string
@@ -22,7 +23,8 @@ export type CourseItem = {
 export const continueCourse: CourseItem = {
   id: 'fundamentos-seguranca',
   title: 'Fundamentos de Segurança da Informação',
-  description: 'Aprenda os principais conceitos, práticas e tecnologias para proteger informações e sistemas contra ameaças digitais.',
+  description:
+    'Aprenda os principais conceitos, práticas e tecnologias para proteger informações e sistemas contra ameaças digitais.',
   type: 'CURSO',
   thumbnail: 'security',
   progress: 65,
