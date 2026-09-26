@@ -4,6 +4,7 @@ import AppLayout from '../../layouts/AppLayout'
 import LoginPage from '../../pages/Login/LoginPage'
 import DashboardPage from '../../pages/Dashboard/DashboardPage'
 import TrilhasPage from '../../pages/Trilhas/TrilhasPage'
+import CursosPage from '../../pages/Cursos/CursosPage'
 import MeusCursosPage from '../../pages/MeusCursos/MeusCursosPage'
 import ComingSoonPage from '../../pages/ComingSoonPage'
 
@@ -16,7 +17,7 @@ export default function AppRoutes() {
         <Route element={<AppLayout />}>
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/trilhas" element={<TrilhasPage />} />
-          <Route path="/cursos" element={<ComingSoonPage />} />
+          <Route path="/cursos" element={<CursosPage />} />
           <Route path="/meus-cursos" element={<MeusCursosPage />} />
           <Route path="/avaliacoes" element={<ComingSoonPage />} />
           <Route path="/certificados" element={<ComingSoonPage />} />
