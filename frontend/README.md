@@ -88,7 +88,9 @@ frontend/
 |---|---|---|
 | `/login` | pública | `LoginPage` |
 | `/dashboard` | autenticada | `DashboardPage` |
-| `/trilhas`, `/cursos`, `/meus-cursos`, `/avaliacoes`, `/certificados`, `/relatorios`, `/perfil`, `/configuracoes` | autenticada | `ComingSoonPage` (placeholder — vira página real quando a tela for construída) |
+| `/cursos` | autenticada | `CursosPage` — catálogo com busca, filtros, ordenação e detalhes |
+| `/avaliacoes` | autenticada | `AvaliacoesPage` — filtros, atividades, notas, resultados e gráficos |
+| `/trilhas`, `/meus-cursos`, `/certificados`, `/relatorios`, `/perfil`, `/configuracoes` | autenticada | `ComingSoonPage` (placeholder — vira página real quando a tela for construída) |
 
 ## Autenticação (MOCK)
 
@@ -99,6 +101,8 @@ frontend/
 - [x] **Login** (`/login`) — autenticação com validação, mostrar/ocultar senha, loading, login social (visual)
 - [x] **Dashboard — Etapa 1** (`/dashboard`) — layout, hero e cards de métricas
 - [ ] **Dashboard — Etapa 2** (Continuar aprendendo, Recomendações, Conquistas, Certificados, Meu progresso)
-- [ ] Demais páginas (Trilhas, Cursos, Meus Cursos, Avaliações, Certificados, Relatórios, Perfil, Configurações) — hoje são placeholders (`ComingSoonPage`)
+- [x] **Cursos** (`/cursos`) — catálogo de 24 cursos, busca, filtros, ordenação, carregamento progressivo e detalhes ([documentação](src/pages/Cursos/README.md))
+- [x] **Avaliações** (`/avaliacoes`) — resumo, filtros, questões interativas, resultados e gráficos ([documentação](src/pages/Avaliacoes/README.md))
+- [ ] Demais páginas (Trilhas, Meus Cursos, Certificados, Relatórios, Perfil, Configurações) — hoje são placeholders (`ComingSoonPage`)
 
 O front-end ainda não está integrado a uma API real — os dados são fictícios/estáticos (`src/mocks/`) por enquanto.

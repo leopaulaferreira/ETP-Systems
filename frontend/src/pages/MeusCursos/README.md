@@ -12,7 +12,7 @@ Os dados vêm de `../../mocks/meus-cursos.mock.ts`; não há integração com ba
 - É possível salvar e remover cursos pelo destaque, pela lista e pelo diálogo.
 - Os salvos usam estado local: alterações permanecem entre abas, mas são reiniciadas ao recarregar ou sair da página.
 - “Ver todos os salvos” seleciona a aba Salvos. Os cards laterais mostram até três itens.
-- “Explorar mais cursos” leva à rota `/cursos`, que ainda exibe a página “Em breve”.
+- “Explorar mais cursos” abre o catálogo em `/cursos`, com busca, filtros e detalhes dos cursos.
 - Reprodução de aulas e atualização real de progresso ficam para uma próxima etapa.
 
 ## Interface

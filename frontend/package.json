@@ -7,6 +7,8 @@
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
     "lint": "oxlint",
+    "test:avaliacoes": "node --experimental-strip-types --test tests/avaliacoes.test.mjs",
+    "test:cursos": "node --experimental-strip-types --test tests/cursos.test.mjs",
     "preview": "vite preview"
   },
   "dependencies": {
