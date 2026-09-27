@@ -130,6 +130,51 @@ const cloudQuestions: AssessmentQuestion[] = [
     explanation: 'O controle de acesso continua sendo necessário para proteger dados e recursos.',
   },
 ]
+const cryptographyQuestions: AssessmentQuestion[] = [
+  {
+    id: 'purpose',
+    kind: 'multiple_choice',
+    prompt: 'Qual é uma finalidade da criptografia?',
+    options: [
+      'Organizar pastas por nome',
+      'Proteger informações por meio de codificação',
+      'Aumentar o brilho do monitor',
+    ],
+    correctOption: 1,
+    explanation:
+      'A criptografia transforma a informação para dificultar sua leitura por pessoas não autorizadas.',
+  },
+  {
+    id: 'key',
+    kind: 'true_false',
+    prompt: 'Uma chave pode ser necessária para decifrar um conteúdo criptografado.',
+    options: ['Verdadeiro', 'Falso'],
+    correctOption: 0,
+    explanation: 'Chaves participam dos processos de cifrar e decifrar informações.',
+  },
+  {
+    id: 'storage',
+    kind: 'multiple_choice',
+    prompt: 'Qual prática contribui para proteger chaves criptográficas?',
+    options: [
+      'Publicá-las em uma página aberta',
+      'Compartilhá-las em grupos pessoais',
+      'Guardá-las em local seguro com acesso restrito',
+    ],
+    correctOption: 2,
+    explanation: 'O acesso às chaves deve ficar restrito às pessoas e sistemas autorizados.',
+  },
+  {
+    id: 'copies',
+    kind: 'true_false',
+    prompt: 'Criptografar arquivos dispensa a necessidade de cópias de segurança.',
+    options: ['Verdadeiro', 'Falso'],
+    correctOption: 1,
+    explanation:
+      'Criptografia e backup têm objetivos diferentes. Uma protege o conteúdo; o outro permite sua recuperação.',
+  },
+]
+
 const accessQuestions: AssessmentQuestion[] = [
   {
     id: 'privilege',
@@ -255,7 +300,7 @@ export const initialAssessments: Assessment[] = [
     minimumScore: 65,
     maxAttempts: 2,
     dueAt: '2026-10-08',
-    questions: accessQuestions,
+    questions: cryptographyQuestions,
     answers: {},
     attempts: [],
   },

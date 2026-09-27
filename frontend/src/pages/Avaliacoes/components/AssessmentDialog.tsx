@@ -195,7 +195,9 @@ export default function AssessmentDialog({
                 <span>
                   Questão {questionIndex + 1} de {item.questions.length}
                 </span>
-                <span>{answered} respondidas</span>
+                <span>
+                  {answered} {answered === 1 ? 'respondida' : 'respondidas'}
+                </span>
               </div>
               <div
                 role="progressbar"
