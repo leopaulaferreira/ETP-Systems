@@ -34,7 +34,7 @@ export default function AssessmentHero() {
                 <Check className="h-3.5 w-3.5 text-brand-cyan-400" />
               </span>
               <span
-                className={`h-1.5 rounded-full bg-brand-blue-300/50 ${row === 1 ? 'w-10' : 'w-14'}`}
+                className={`h-1.5 rounded-full bg-brand-blue-400/50 ${row === 1 ? 'w-10' : 'w-14'}`}
               />
             </div>
           ))}

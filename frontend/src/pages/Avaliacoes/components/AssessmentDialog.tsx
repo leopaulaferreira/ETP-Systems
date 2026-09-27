@@ -41,7 +41,8 @@ export default function AssessmentDialog({
   onSubmit,
 }: AssessmentDialogProps) {
   const dialogRef = useRef<HTMLDialogElement>(null)
-  const questionRef = useRef<HTMLHeadingElement>(null)
+  const questionRef = useRef<HTMLSpanElement>(null)
+  const resultRef = useRef<HTMLHeadingElement>(null)
   const [questionIndex, setQuestionIndex] = useState(() =>
     Math.max(
       0,
@@ -67,6 +68,7 @@ export default function AssessmentDialog({
 
   useEffect(() => {
     if (item.status === 'in_progress') questionRef.current?.focus()
+    if (item.status === 'completed') resultRef.current?.focus()
   }, [questionIndex, item.status])
 
   function start() {
@@ -94,7 +96,9 @@ export default function AssessmentDialog({
         const last = controls[controls.length - 1]
         if (
           event.shiftKey &&
-          (document.activeElement === first || document.activeElement === questionRef.current)
+          (document.activeElement === first ||
+            document.activeElement === questionRef.current ||
+            document.activeElement === resultRef.current)
         ) {
           event.preventDefault()
           last?.focus()
@@ -291,7 +295,11 @@ export default function AssessmentDialog({
                 {score}%
               </span>
               <div>
-                <h3 className="font-extrabold">
+                <h3
+                  ref={resultRef}
+                  tabIndex={-1}
+                  className="rounded font-extrabold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue-400"
+                >
                   {passed ? 'Parabéns, você foi aprovado!' : 'Continue praticando'}
                 </h3>
                 <p className="mt-1 text-xs leading-5 text-ink-500">
