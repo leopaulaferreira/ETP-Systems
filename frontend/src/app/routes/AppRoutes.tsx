@@ -7,6 +7,7 @@ import TrilhasPage from '../../pages/Trilhas/TrilhasPage'
 import CursosPage from '../../pages/Cursos/CursosPage'
 import MeusCursosPage from '../../pages/MeusCursos/MeusCursosPage'
 import ComingSoonPage from '../../pages/ComingSoonPage'
+import AvaliacoesPage from '../../pages/Avaliacoes/AvaliacoesPage'
 
 export default function AppRoutes() {
   return (
@@ -19,7 +20,7 @@ export default function AppRoutes() {
           <Route path="/trilhas" element={<TrilhasPage />} />
           <Route path="/cursos" element={<CursosPage />} />
           <Route path="/meus-cursos" element={<MeusCursosPage />} />
-          <Route path="/avaliacoes" element={<ComingSoonPage />} />
+          <Route path="/avaliacoes" element={<AvaliacoesPage />} />
           <Route path="/certificados" element={<ComingSoonPage />} />
           <Route path="/relatorios" element={<ComingSoonPage />} />
           <Route path="/perfil" element={<ComingSoonPage />} />
