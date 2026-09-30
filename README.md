@@ -1,195 +1,243 @@
 # ETP Systems
-### Plataforma de Aprendizagem para Treinamento Corporativo
+### Plataforma de Gestão de Aprendizagem e Desenvolvimento Corporativo
 
 ![Status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow)
 ![Projeto Acadêmico](https://img.shields.io/badge/projeto-acadêmico-blue)
-![Backend](https://img.shields.io/badge/backend-Java%20%7C%20Node.js-orange)
-![Frontend](https://img.shields.io/badge/frontend-React%20%7C%20Flutter-blue)
-![Database](https://img.shields.io/badge/database-MySQL-lightgrey)
+![Backend](https://img.shields.io/badge/backend-Spring%20Boot-green)
+![Frontend](https://img.shields.io/badge/frontend-React%20%7C%20TypeScript-blue)
+![Database](https://img.shields.io/badge/database-MySQL-orange)
 
-Projeto acadêmico desenvolvido no curso de **Análise e Desenvolvimento de Sistemas** na disciplina **Projeto Integrador (PIN)**.
+Projeto acadêmico desenvolvido no curso de **Análise e Desenvolvimento de Sistemas
+da Universidade Municipal de São Caetano do Sul (USCS)**.
 
 ---
 
 # 📚 Sobre o Projeto
 
-O **ETP Systems** é uma plataforma educacional desenvolvida para apoiar o desenvolvimento profissional de colaboradores do **Banco do Brasil**.
+O **ETP Systems** é uma plataforma de aprendizagem corporativa criada para apoiar
+organizações na gestão da capacitação e do desenvolvimento profissional de seus
+colaboradores.
 
-A plataforma oferece **trilhas de aprendizado, treinamentos e certificações**, ajudando novos colaboradores a adquirirem experiência prática e permitindo que profissionais mais experientes evoluam em suas carreiras dentro da organização.
+A solução centraliza **cursos, trilhas de aprendizagem, avaliações, acompanhamento
+de progresso e certificações** em um único ambiente, permitindo que colaboradores
+acompanhem sua própria evolução enquanto empresas, gestores e setores de Recursos
+Humanos obtêm maior visibilidade sobre o desenvolvimento de suas equipes.
 
-O objetivo é tornar o aprendizado corporativo **mais acessível, organizado e alinhado com os objetivos estratégicos da instituição**.
+O projeto busca responder a um problema recorrente em ambientes corporativos:
+a dificuldade de **organizar treinamentos, acompanhar a evolução dos participantes
+e transformar dados de aprendizagem em informações úteis para colaboradores e
+gestores**.
+
+---
+
+# 🎯 Problema que o ETP busca resolver
+
+Processos de capacitação corporativa podem envolver diferentes cursos, plataformas,
+avaliações e registros, tornando difícil acompanhar de forma centralizada:
+
+- quais treinamentos cada colaborador está realizando;
+- quais competências estão sendo desenvolvidas;
+- o progresso individual e coletivo;
+- resultados de avaliações;
+- trilhas de aprendizagem;
+- cursos concluídos e certificados obtidos;
+- necessidades de desenvolvimento das equipes.
+
+O **ETP Systems** propõe reunir essas informações em uma única plataforma,
+facilitando tanto a experiência de aprendizagem do colaborador quanto a gestão
+do desenvolvimento profissional pela organização.
+
+---
+
+# 💡 Proposta da Solução
+
+O ETP Systems funciona a partir de dois perfis principais.
+
+## 👤 Colaborador
+
+O colaborador pode:
+
+- acessar cursos e treinamentos;
+- seguir trilhas de aprendizagem;
+- acompanhar cursos em andamento;
+- visualizar seu progresso;
+- realizar avaliações;
+- acompanhar notas e resultados;
+- consultar certificados;
+- visualizar seu histórico de aprendizagem;
+- receber recomendações de conteúdo.
+
+## 🏢 Empresa / RH
+
+O perfil organizacional será responsável por funcionalidades de gestão, como:
+
+- acompanhar colaboradores;
+- visualizar progresso das equipes;
+- consultar resultados de avaliações;
+- acompanhar cursos e trilhas concluídas;
+- visualizar indicadores de aprendizagem;
+- organizar conteúdos e programas de capacitação;
+- identificar necessidades de desenvolvimento.
+
+A separação entre os dois perfis permite que o sistema atenda tanto quem aprende
+quanto quem organiza e acompanha o processo de capacitação.
+
+---
+
+# 🎯 Objetivos do Projeto
+
+O ETP Systems tem como objetivos:
+
+- centralizar processos de **aprendizagem corporativa**;
+- estruturar **trilhas de desenvolvimento profissional**;
+- facilitar o acompanhamento do **progresso dos colaboradores**;
+- disponibilizar mecanismos de **avaliação da aprendizagem**;
+- registrar cursos concluídos e **certificações**;
+- fornecer informações para apoiar gestores e setores de **Recursos Humanos**;
+- tornar processos de capacitação mais **organizados, acessíveis e mensuráveis**;
+- contribuir para iniciativas de **desenvolvimento e valorização de talentos**.
+
+Resultados organizacionais mais amplos, como retenção de talentos, mobilidade
+interna ou redução da dependência de recrutamento externo, são tratados como
+impactos potenciais e dependerão de validação futura.
 
 ---
 
 # 🖼️ Prévia da Interface
 
-## Tela de Login
+## Dashboard
 
-A primeira interface implementada apresenta a nova identidade visual da plataforma, acesso por perfil e suporte a múltiplos idiomas.
+O dashboard apresenta uma visão geral da experiência de aprendizagem do colaborador,
+reunindo indicadores, atalhos para cursos e informações sobre o progresso dentro da
+plataforma.
 
-![Tela de login da plataforma ETP Systems](docs/images/login-etp-systems.png)
+Ele funciona como o ponto central de navegação do ETP Systems após a autenticação,
+conectando o usuário às principais áreas da aplicação.
 
----
+<img width="1920" height="1080" alt="Captura de tela de 2026-09-30 12-32-13" src="https://github.com/user-attachments/assets/16faf94b-bc0e-4697-9576-d2d00463929a" />
 
-# 🎯 Objetivos do Projeto""
-
-- Fortalecer a **capacitação interna** dos colaboradores  
-- Oferecer **trilhas de aprendizado estruturadas**  
-- Apoiar **promoções por mérito**  
-- Aumentar a **retenção de talentos**  
-- Reduzir custos com **recrutamento externo**  
-- Alinhar o desenvolvimento profissional às **metas estratégicas do banco**
 
 ---
 
-# 👥 Integrantes do Projeto
-
-- Leonardo  
-- Miguel  
-- Nicolas  
-- Matheus  
-- Rafael  
-- Vinicius  
-
----
-
-# 🖥️ Funcionalidades do Sistema
+# 🖥️ Funcionalidades
 
 ## 🔐 Autenticação
-- Cadastro de usuário  
-- Login com senha  
-- Login social  
+
+- login de usuário;
+- estrutura preparada para autenticação real;
+- rotas públicas e protegidas;
+- separação entre perfis de acesso;
+- logout.
+
+Atualmente a autenticação do frontend utiliza dados fictícios enquanto o backend
+está em desenvolvimento.
+
+---
 
 ## 📊 Dashboard
-- Acesso rápido aos cursos disponíveis  
-- Visualização do progresso do usuário  
+
+- visão geral da aprendizagem;
+- indicadores de progresso;
+- acesso rápido às principais áreas;
+- estrutura preparada para indicadores provenientes da API.
+
+---
 
 ## 🎓 Cursos
-- Lista de cursos disponíveis  
-- Busca e filtros de conteúdo  
-- Acompanhamento de cursos em andamento  
+
+- catálogo de cursos;
+- busca por conteúdo;
+- filtros por categoria;
+- filtros por nível;
+- ordenação;
+- detalhes dos cursos;
+- carregamento progressivo dos resultados.
 
 ---
 
-# 🧱 Arquitetura do Sistema
+## 🛤️ Trilhas de Aprendizagem
 
-O sistema será dividido em **três camadas principais**.
-
-## Front-end
-Responsável pela **interface do usuário** e comunicação com a API.
-
-## Back-end
-Responsável pelas **regras de negócio**, autenticação e gerenciamento de usuários e cursos.
-
-## Banco de Dados
-Responsável pelo **armazenamento das informações da aplicação**.
+As trilhas permitem organizar cursos relacionados em sequências de desenvolvimento,
+facilitando a criação de jornadas de aprendizagem estruturadas.
 
 ---
 
-# ⚙️ Tecnologias Utilizadas
+## 📚 Meus Cursos
 
-## Front-end
-- React  
-ou  
-- Flutter Web  
+Área destinada ao acompanhamento dos cursos do colaborador, incluindo:
 
-## Back-end
-- Node.js  
-ou  
-- Java Spring Boot  
-
-## Banco de Dados
-- MySQL  
-
-## Autenticação
-- OAuth 2.0  
-- Login social  
-
-## Hospedagem
-- AWS  
-ou  
-- Azure  
-
-## Arquitetura definida
-
-```
-┌───────────────┐
-│     React     │
-│  TypeScript   │
-└───────┬───────┘
-        │
-     REST API
-        │
-┌───────▼───────┐
-│  Spring Boot  │
-│               │
-│ Controllers   │
-│ Services      │
-│ Repositories  │
-│ Security      │
-└───────┬───────┘
-        │
-    Hibernate
-        │
-┌───────▼───────┐
-│     MySQL     │
-└───────────────┘
-```
+- cursos em andamento;
+- progresso;
+- cursos concluídos;
+- continuidade da aprendizagem.
 
 ---
 
-# 📂 Estrutura do repositório
+## 📝 Avaliações
 
-```
-ETP-Systems/
-│
-├── backend/
-├── frontend/
-│   ├── 01 - LOGIN/
-│   │   └── README.md
-│   └── 02-Dashboard/
-│       └── README.md
-├── database/
-├── docs/
-│
-├── docker-compose.yml
-├── .gitignore
-└── README.md
-```
+O módulo de avaliações permite:
 
-A estrutura ainda vai evoluir conforme o projeto avança.
+- avaliações pendentes, em andamento, concluídas ou agendadas;
+- questões de múltipla escolha e verdadeiro/falso;
+- controle de tentativas;
+- cálculo de notas;
+- nota mínima para aprovação;
+- apresentação de resultados;
+- feedback das respostas;
+- indicadores de desempenho.
+
+Atualmente essa lógica funciona no frontend com dados fictícios e será integrada
+ao backend.
 
 ---
 
-# 🚀 Como Executar o Projeto
+## 🏆 Certificados
 
-## 1️⃣ Clonar o repositório
+Planejado para registrar e disponibilizar certificados associados aos cursos
+concluídos.
 
-```bash
-git clone https://github.com/leopaulaferreira/ETP-Systems.git
-cd ETP-Systems
-```
+---
 
-## 2️⃣ Tela de Login
+## 📈 Gestão Empresarial
 
-```bash
-cd "frontend/01 - LOGIN"
-npm install
-npm run dev
-```
+Planejado para permitir que empresas, gestores ou setores de RH acompanhem:
 
-Acesse `http://localhost:5173`.
+- colaboradores;
+- progresso individual;
+- desempenho das equipes;
+- avaliações;
+- cursos concluídos;
+- certificações;
+- indicadores de aprendizagem.
 
-## 3️⃣ Dashboard
+---
 
-Em outro terminal:
+# 🤖 Tutor Inteligente
 
-```bash
-cd "frontend/02-Dashboard"
-npm install
-npm run dev
-```
+O projeto prevê a implementação de um **assistente de aprendizagem baseado em
+Inteligência Artificial**.
 
-Acesse `http://localhost:5173`.
+O tutor poderá utilizar o contexto do curso e do módulo estudado para auxiliar
+o colaborador com funções como:
 
-> Backend e banco de dados ainda serão implementados — por enquanto o front-end roda com dados fictícios.
+- explicar conteúdos de maneiras diferentes;
+- esclarecer dúvidas;
+- gerar exemplos;
+- resumir conteúdos;
+- criar exercícios de apoio;
+- fornecer explicações adicionais durante o processo de aprendizagem.
+
+A integração está planejada para utilizar uma API de IA através do backend,
+mantendo o frontend desacoplado do provedor utilizado.
+
+Arquitetura prevista:
+
+```text
+TutorService
+     │
+     ▼
+ AiProvider
+     │
+     ├── GeminiProvider
+     │
+     └── outros provedores futuramente
