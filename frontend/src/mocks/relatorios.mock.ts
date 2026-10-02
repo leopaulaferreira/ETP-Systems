@@ -57,9 +57,9 @@ export const reportRanking = [
 ]
 
 export const reportPopularCourses = [
-  { title: 'Fundamentos de LGPD', students: 128, icon: 'governance' },
-  { title: 'Trilha de Cibersegurança', students: 112, icon: 'security' },
-  { title: 'Computação em Nuvem: Conceitos e Aplicações', students: 94, icon: 'cloud' },
-  { title: 'Proteção de Dados Pessoais', students: 76, icon: 'security' },
-  { title: 'Introdução à Criptografia', students: 68, icon: 'security' },
+  { title: 'Fundamentos de LGPD', students: 128, thumbnail: 'lgpd' },
+  { title: 'Trilha de Cibersegurança', students: 112, thumbnail: 'cybersecurity' },
+  { title: 'Computação em Nuvem: Conceitos e Aplicações', students: 94, thumbnail: 'cloud' },
+  { title: 'Proteção de Dados Pessoais', students: 76, thumbnail: 'lgpd' },
+  { title: 'Introdução à Criptografia', students: 68, thumbnail: 'security' },
 ] as const

@@ -6,7 +6,7 @@ import {
   reportPopularCourses,
   reportRanking,
 } from '../../../mocks/relatorios.mock'
-import CourseArtwork from '../../Cursos/components/CourseArtwork'
+import CourseThumbnail from '../../MeusCursos/components/CourseThumbnail'
 import ReportPanel from './ReportPanel'
 
 export default function ReportOverview({
@@ -178,7 +178,7 @@ export default function ReportOverview({
           <ol className="flex flex-1 flex-col gap-4 px-5 pb-5 sm:px-6">
             {reportPopularCourses.map((item, index) => (
               <li key={item.title} className="flex min-w-0 items-center gap-3">
-                <CourseArtwork icon={item.icon} />
+                <CourseThumbnail thumbnail={item.thumbnail} size="small" />
                 <div className="min-w-0 flex-1">
                   <p className="text-[11px] font-bold leading-5 text-ink-900">{item.title}</p>
                   <div className="mt-1.5 flex items-center gap-2">
