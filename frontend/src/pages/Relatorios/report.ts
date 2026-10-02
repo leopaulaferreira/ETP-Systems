@@ -48,9 +48,9 @@ export function selectReport(period: ReportPeriod, trail: ReportTrailFilter) {
     byTrail,
     summary: {
       certificates: certificates.length,
-      courses: trail === 'all' ? total('courses') : null,
-      hours: trail === 'all' ? total('hours') : null,
-      trails: trail === 'all' ? total('trails') : null,
+      courses: total('courses'),
+      hours: total('hours'),
+      trails: total('trails'),
     },
   }
 }
