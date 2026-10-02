@@ -16,14 +16,21 @@ export const periodDates: Record<ReportPeriod, string> = {
 }
 
 export function selectReport(period: ReportPeriod, trail: ReportTrailFilter) {
-  const months = reportMonths.filter((item) => period === 'year' ||
-    (period === 'first-half' ? item.month <= 6 : item.month >= 7))
-  const certificates = reportCertificates.filter((item) =>
-    months.some((month) => month.month === item.month) && (trail === 'all' || item.trail === trail))
-  const certificateCounts = months.map((month) => certificates.filter((item) => item.month === month.month).length)
+  const months = reportMonths.filter(
+    (item) => period === 'year' || (period === 'first-half' ? item.month <= 6 : item.month >= 7),
+  )
+  const certificates = reportCertificates.filter(
+    (item) =>
+      months.some((month) => month.month === item.month) &&
+      (trail === 'all' || item.trail === trail),
+  )
+  const certificateCounts = months.map(
+    (month) => certificates.filter((item) => item.month === month.month).length,
+  )
   let accumulated = 0
   const evolution = months.map((month, index) => ({
     ...month,
+    certificates: certificateCounts[index],
     value: (accumulated += certificateCounts[index]),
   }))
   const total = <K extends 'courses' | 'hours' | 'trails'>(key: K) =>

@@ -16,7 +16,8 @@ export const reportMonths = [
   { month: 12, label: 'Dez', certificates: 1, courses: 1, hours: 4, trails: 1 },
 ] as const
 
-export type ReportTrail = 'Cibersegurança' | 'LGPD' | 'Computação em Nuvem' | 'Proteção de Dados' | 'Criptografia'
+export type ReportTrail =
+  'Cibersegurança' | 'LGPD' | 'Computação em Nuvem' | 'Proteção de Dados' | 'Criptografia'
 
 export const reportCertificates: { month: number; trail: ReportTrail }[] = [
   { month: 2, trail: 'Cibersegurança' },
@@ -29,8 +30,18 @@ export const reportCertificates: { month: number; trail: ReportTrail }[] = [
 ]
 
 export const reportCourseStatus = [
-  { label: 'Concluídos', count: 12, color: 'var(--color-emerald-500, #10b981)', dot: 'bg-emerald-500' },
-  { label: 'Em andamento', count: 4, color: 'var(--color-brand-blue-600)', dot: 'bg-brand-blue-600' },
+  {
+    label: 'Concluídos',
+    count: 12,
+    color: 'var(--color-emerald-500, #10b981)',
+    dot: 'bg-emerald-500',
+  },
+  {
+    label: 'Em andamento',
+    count: 4,
+    color: 'var(--color-brand-blue-600)',
+    dot: 'bg-brand-blue-600',
+  },
   { label: 'Não iniciados', count: 3, color: '#f97316', dot: 'bg-orange-500' },
   { label: 'Atrasados', count: 1, color: '#8b5cf6', dot: 'bg-violet-500' },
 ]
