@@ -1,3 +1,4 @@
+import IllustratedIcon, { type IconTone } from '../../../components/ui/IllustratedIcon'
 import { Award, BookCheck, Clock3, Route, type LucideIcon } from 'lucide-react'
 import type { ReturnTypeReport } from '../reportTypes'
 
@@ -6,7 +7,7 @@ const items: {
   label: string
   suffix: string
   icon: LucideIcon
-  accent: string
+  tone: IconTone
   graph: string
 }[] = [
   {
@@ -14,7 +15,7 @@ const items: {
     label: 'Certificados emitidos',
     suffix: '',
     icon: Award,
-    accent: 'border-violet-400/20 bg-violet-400/10 text-violet-300',
+    tone: 'violet',
     graph: 'text-violet-300',
   },
   {
@@ -22,7 +23,7 @@ const items: {
     label: 'Cursos concluídos',
     suffix: '',
     icon: BookCheck,
-    accent: 'border-emerald-400/20 bg-emerald-400/10 text-emerald-300',
+    tone: 'emerald',
     graph: 'text-emerald-300',
   },
   {
@@ -30,7 +31,7 @@ const items: {
     label: 'Horas estudadas',
     suffix: 'h',
     icon: Clock3,
-    accent: 'border-orange-400/20 bg-orange-400/10 text-orange-300',
+    tone: 'orange',
     graph: 'text-orange-300',
   },
   {
@@ -38,7 +39,7 @@ const items: {
     label: 'Trilhas concluídas',
     suffix: '',
     icon: Route,
-    accent: 'border-brand-blue-400/20 bg-brand-blue-400/10 text-brand-blue-400',
+    tone: 'blue',
     graph: 'text-brand-blue-400',
   },
 ]
@@ -49,7 +50,7 @@ export default function ReportStats({ data }: { data: ReturnTypeReport }) {
       aria-label="Indicadores do período"
       className="grid grid-cols-2 gap-3 xl:grid-cols-4 lg:gap-4"
     >
-      {items.map(({ key, label, suffix, icon: Icon, accent, graph }) => {
+      {items.map(({ key, label, suffix, icon: Icon, tone, graph }) => {
         const series = data.evolution.map((month) => month[key])
         const max = Math.max(1, ...series)
         const activeMonths = series.filter((value) => value > 0).length
@@ -59,11 +60,7 @@ export default function ReportStats({ data }: { data: ReturnTypeReport }) {
             className="group relative min-w-0 overflow-hidden rounded-[22px] border border-ink-200/70 bg-gradient-to-br from-panel-alt/70 to-panel p-4 shadow-card transition-colors hover:border-brand-blue-400/30 sm:p-5"
           >
             <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
-              <span
-                className={`flex h-9 w-9 items-center justify-center rounded-xl border ${accent}`}
-              >
-                <Icon className="h-4.5 w-4.5" strokeWidth={1.8} aria-hidden="true" />
-              </span>
+              <IllustratedIcon icon={Icon} tone={tone} size="compact" />
               <span className="text-[9px] font-semibold uppercase tracking-wider text-ink-500">
                 {data.trail !== 'all' && key === 'certificates' ? 'Nesta trilha' : 'No período'}
               </span>

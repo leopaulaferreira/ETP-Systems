@@ -1,13 +1,10 @@
+import IllustratedIcon, { type IconTone } from '../../../components/ui/IllustratedIcon'
 import { Award, GraduationCap, ShieldCheck, Trophy } from 'lucide-react'
 import { certificateAchievements } from '../../../mocks/certificados.mock'
 import { formatCertificateDate } from '../certificates'
 
 const icons = { trophy: Trophy, shield: ShieldCheck, graduation: GraduationCap }
-const colors = [
-  'bg-orange-400/10 text-orange-300',
-  'bg-brand-blue-400/10 text-brand-blue-400',
-  'bg-emerald-400/10 text-emerald-300',
-]
+const tones: IconTone[] = ['orange', 'blue', 'emerald']
 
 export default function CertificateAchievements({ completed }: { completed: number }) {
   return (
@@ -18,11 +15,7 @@ export default function CertificateAchievements({ completed }: { completed: numb
           const Icon = icons[achievement.icon]
           return (
             <li key={achievement.title} className="flex items-start gap-3">
-              <span
-                className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${colors[index]}`}
-              >
-                <Icon className="h-5 w-5" aria-hidden="true" />
-              </span>
+              <IllustratedIcon icon={Icon} tone={tones[index]} size="compact" />
               <div className="min-w-0 flex-1">
                 <p className="text-xs font-bold leading-5 text-ink-900">{achievement.title}</p>
                 <p className="mt-1 text-[11px] leading-5 text-ink-500">{achievement.description}</p>
@@ -35,9 +28,7 @@ export default function CertificateAchievements({ completed }: { completed: numb
         })}
       </ul>
       <div className="flex items-center gap-3 border-t border-ink-100 pt-4">
-        <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-brand-blue-400/30 bg-brand-blue-500/15">
-          <Award className="h-8 w-8 text-brand-blue-400" aria-hidden="true" />
-        </span>
+        <IllustratedIcon icon={Award} tone="blue" size="metric" />
         <div className="min-w-0 flex-1">
           <p className="text-[10px] text-ink-500">Próxima conquista</p>
           <p className="mt-1 text-xs font-bold text-ink-900">Mestre do Conhecimento</p>
