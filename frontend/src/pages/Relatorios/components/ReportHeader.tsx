@@ -1,68 +1,128 @@
-import { BarChart3, CalendarDays, SlidersHorizontal } from 'lucide-react'
+import {
+  Award,
+  BarChart3,
+  CalendarDays,
+  Download,
+  SlidersHorizontal,
+  Sparkles,
+  TrendingUp,
+} from 'lucide-react'
 import { periodDates, periodLabels, type ReportPeriod } from '../report'
+
+type Props = {
+  period: ReportPeriod
+  onPeriodChange: (value: ReportPeriod) => void
+  filtersOpen: boolean
+  onToggleFilters: () => void
+  onExport: () => void
+  filtered: boolean
+}
 
 export default function ReportHeader({
   period,
   onPeriodChange,
   filtersOpen,
   onToggleFilters,
-}: {
-  period: ReportPeriod
-  onPeriodChange: (value: ReportPeriod) => void
-  filtersOpen: boolean
-  onToggleFilters: () => void
-}) {
+  onExport,
+  filtered,
+}: Props) {
   return (
-    <section className="relative isolate overflow-hidden rounded-[24px] border border-brand-blue-500/20 bg-gradient-to-br from-navy-800 via-panel to-navy-700 px-6 py-8 shadow-card sm:px-8 lg:px-10">
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute -right-10 -top-20 h-52 w-52 rounded-full border-[34px] border-brand-blue-500/5"
-      />
-      <div className="relative flex flex-wrap items-end justify-between gap-6">
-        <div className="flex min-w-0 flex-col items-start gap-3">
-          <span className="inline-flex items-center gap-2 rounded-full border border-brand-blue-500/20 bg-brand-blue-500/10 px-3 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.11em] text-brand-blue-400">
-            <BarChart3 className="h-3.5 w-3.5 text-brand-cyan-400" aria-hidden="true" /> Sua jornada
-            em números
-          </span>
-          <h1 className="text-[31px] font-extrabold leading-[1.12] tracking-[-0.025em] text-ink-900 sm:text-[34px] lg:text-[36px]">
-            Relatórios
-          </h1>
-          <p className="text-[15px] leading-7 text-ink-500 sm:text-base">
-            Acompanhe seu desempenho e evolução como aprendiz.
-          </p>
+    <div className="flex min-w-0 flex-col gap-5">
+      <section className="relative isolate overflow-hidden rounded-[28px] border border-brand-blue-500/20 bg-gradient-to-br from-navy-800 via-panel to-navy-900 px-6 py-8 shadow-card sm:px-8 lg:px-10 lg:py-9">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
+          <span className="absolute -right-12 -top-48 h-[520px] w-[520px] rounded-full border border-brand-blue-400/10 bg-brand-blue-500/5" />
+          <span className="absolute right-10 top-[-140px] h-[390px] w-[390px] rounded-full border border-brand-cyan-400/10" />
+          <span className="absolute bottom-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-brand-blue-400/40 to-transparent" />
         </div>
-        <div className="flex w-full flex-wrap items-end gap-3 lg:w-auto">
-          <label className="flex min-w-0 flex-1 flex-col gap-1.5 text-[11px] font-semibold text-ink-500 sm:flex-none">
-            Período
-            <span className="flex min-h-11 items-center gap-2 rounded-xl border border-ink-200 bg-panel-alt px-3 focus-within:ring-2 focus-within:ring-brand-blue-400">
-              <CalendarDays className="h-4 w-4 shrink-0 text-brand-blue-400" aria-hidden="true" />
-              <select
-                aria-label="Período do relatório"
-                value={period}
-                onChange={(event) => onPeriodChange(event.target.value as ReportPeriod)}
-                className="min-w-0 flex-1 bg-transparent py-2 text-xs font-semibold text-ink-700 outline-none sm:flex-none"
-              >
-                {(Object.keys(periodLabels) as ReportPeriod[]).map((key) => (
-                  <option key={key} value={key}>
-                    {periodLabels[key]}
-                  </option>
-                ))}
-              </select>
+        <div className="relative flex items-center justify-between gap-10">
+          <div className="max-w-xl">
+            <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-brand-blue-400/20 bg-brand-blue-500/10 px-3 py-1.5 text-[10px] font-extrabold uppercase tracking-[0.15em] text-brand-blue-400">
+              <BarChart3 className="h-3.5 w-3.5 text-brand-cyan-400" aria-hidden="true" /> Seu
+              desenvolvimento
             </span>
-          </label>
+            <h1 className="text-[34px] font-extrabold leading-tight tracking-[-0.035em] text-ink-900 sm:text-[40px]">
+              Relatórios
+            </h1>
+            <p className="mt-3 max-w-lg text-sm leading-7 text-ink-500 sm:text-[15px]">
+              Cada passo conta. Transforme sua jornada de aprendizado em uma visão clara das suas
+              conquistas.
+            </p>
+            <span className="mt-5 inline-flex items-center gap-2 text-xs font-semibold text-brand-cyan-400">
+              <Sparkles className="h-3.5 w-3.5" aria-hidden="true" /> Conhecimento que se transforma
+              em evolução
+            </span>
+          </div>
+          <div aria-hidden="true" className="relative mr-2 hidden h-44 w-56 shrink-0 xl:block">
+            <div className="absolute inset-x-2 inset-y-3 rotate-[-6deg] rounded-2xl border border-brand-blue-400/20 bg-panel-alt/80 p-5 shadow-card">
+              <div className="flex items-center justify-between">
+                <span className="h-1.5 w-14 rounded-full bg-brand-blue-400/25" />
+                <TrendingUp className="h-5 w-5 text-brand-cyan-400" />
+              </div>
+              <div className="mt-6 flex h-16 items-end gap-3">
+                {[30, 45, 38, 65, 78, 100].map((height, index) => (
+                  <span
+                    key={index}
+                    className="flex-1 rounded-t bg-gradient-to-t from-brand-blue-600/20 to-brand-blue-400/70"
+                    style={{ height: `${height}%` }}
+                  />
+                ))}
+              </div>
+            </div>
+            <span className="absolute -bottom-1 -right-4 flex h-17 w-17 items-center justify-center rounded-2xl border border-brand-cyan-400/30 bg-navy-800 shadow-card">
+              <Award className="h-10 w-10 text-brand-cyan-400" strokeWidth={1.4} />
+            </span>
+          </div>
+        </div>
+      </section>
+      <div className="flex flex-wrap items-center justify-between gap-4">
+        <div className="flex items-center gap-3">
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-ink-200 bg-panel text-ink-500">
+            <CalendarDays className="h-4 w-4" aria-hidden="true" />
+          </span>
+          <div>
+            <p className="text-xs font-bold text-ink-900">Seu desempenho no período</p>
+            <p className="mt-1 text-[11px] text-ink-500">{periodDates[period]}</p>
+          </div>
+        </div>
+        <div className="grid w-full grid-cols-2 items-center gap-2 sm:flex sm:w-auto sm:flex-wrap">
+          <select
+            aria-label="Período do relatório"
+            value={period}
+            onChange={(event) => onPeriodChange(event.target.value as ReportPeriod)}
+            className="col-span-2 min-h-10 min-w-0 rounded-xl border border-ink-200 bg-panel px-3 text-xs font-semibold text-ink-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue-400"
+          >
+            {(Object.keys(periodLabels) as ReportPeriod[]).map((key) => (
+              <option key={key} value={key}>
+                {periodLabels[key]}
+              </option>
+            ))}
+          </select>
           <button
             type="button"
             onClick={onToggleFilters}
             aria-expanded={filtersOpen}
             aria-controls="report-filters"
-            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-ink-200 bg-panel-alt px-4 py-2.5 text-xs font-bold text-ink-700 hover:border-brand-blue-500/40 hover:text-brand-blue-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue-400"
+            className={`inline-flex min-h-10 items-center justify-center gap-2 rounded-xl border px-3 text-xs font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue-400 ${filtersOpen || filtered ? 'border-brand-blue-400/40 bg-brand-blue-500/10 text-brand-blue-400' : 'border-ink-200 bg-panel text-ink-700 hover:border-brand-blue-400/40'}`}
           >
-            <SlidersHorizontal className="h-4 w-4" aria-hidden="true" />
+            <SlidersHorizontal className="h-3.5 w-3.5" aria-hidden="true" />
             Filtros
+            {filtered && (
+              <span
+                className="h-1.5 w-1.5 rounded-full bg-brand-cyan-400"
+                aria-label="Filtro ativo"
+              />
+            )}
+          </button>
+          <button
+            type="button"
+            onClick={onExport}
+            className="inline-flex min-h-10 items-center justify-center gap-2 rounded-xl border border-brand-blue-500/40 bg-brand-blue-700 px-3 text-xs font-bold text-white transition-colors hover:bg-brand-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue-400"
+          >
+            <Download className="h-3.5 w-3.5" aria-hidden="true" />
+            Exportar CSV
           </button>
         </div>
       </div>
-      <p className="relative mt-3 text-xs text-ink-500 lg:text-right">{periodDates[period]}</p>
-    </section>
+    </div>
   )
 }

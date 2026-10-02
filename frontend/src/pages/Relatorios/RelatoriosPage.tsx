@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { Info } from 'lucide-react'
+import { Info, X } from 'lucide-react'
 import {
   reportCourseStatus,
   reportPopularCourses,
@@ -12,6 +12,7 @@ import ReportHeader from './components/ReportHeader'
 import ReportOverview from './components/ReportOverview'
 import ReportStats from './components/ReportStats'
 import { periodDates, selectReport, type ReportPeriod, type ReportTrailFilter } from './report'
+import { downloadReportCsv } from './reportCsv'
 
 type Detail = 'evolution' | 'trails' | 'status' | 'ranking' | 'popular'
 const trailNames = [...new Set(reportCertificates.map((item) => item.trail))]
@@ -28,6 +29,7 @@ export default function RelatoriosPage() {
   const [trail, setTrail] = useState<ReportTrailFilter>('all')
   const [filtersOpen, setFiltersOpen] = useState(false)
   const [detail, setDetail] = useState<Detail | null>(null)
+  const [exportMessage, setExportMessage] = useState('')
   const data = useMemo(() => selectReport(period, trail), [period, trail])
 
   return (
@@ -37,7 +39,26 @@ export default function RelatoriosPage() {
         onPeriodChange={setPeriod}
         filtersOpen={filtersOpen}
         onToggleFilters={() => setFiltersOpen((current) => !current)}
+        filtered={trail !== 'all'}
+        onExport={() => {
+          try {
+            downloadReportCsv(data)
+            setExportMessage('Relatório exportado em CSV com os filtros selecionados.')
+          } catch {
+            setExportMessage('Não foi possível exportar o relatório. Tente novamente.')
+          }
+        }}
       />
+      <p
+        role="status"
+        className={
+          exportMessage
+            ? 'rounded-xl border border-brand-blue-500/20 bg-brand-blue-500/5 px-4 py-3 text-xs text-brand-blue-400'
+            : 'sr-only'
+        }
+      >
+        {exportMessage}
+      </p>
       {filtersOpen && (
         <div
           id="report-filters"
@@ -69,8 +90,8 @@ export default function RelatoriosPage() {
             Limpar filtros
           </button>
           <p className="basis-full text-[11px] text-ink-500">
-            O filtro de trilha se aplica aos certificados. Os demais indicadores aparecem na visão
-            geral.
+            Filtre os certificados por trilha. Cursos, horas e trilhas concluídas mostram o total do
+            período.
           </p>
         </div>
       )}
@@ -78,18 +99,19 @@ export default function RelatoriosPage() {
         <button
           type="button"
           onClick={() => setTrail('all')}
-          className="self-start rounded-full border border-brand-blue-500/30 bg-brand-blue-500/10 px-3 py-1.5 text-xs font-semibold text-brand-blue-400 hover:bg-brand-blue-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue-400"
+          aria-label={`Remover filtro de trilha: ${trail}`}
+          className="inline-flex items-center gap-2 self-start rounded-full border border-brand-blue-500/30 bg-brand-blue-500/10 px-3 py-1.5 text-xs font-semibold text-brand-blue-400 hover:bg-brand-blue-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue-400"
         >
-          Trilha: {trail} · remover filtro
+          Certificados: {trail}
+          <X className="h-3 w-3" aria-hidden="true" />
         </button>
       )}
-      <ReportStats summary={data.summary} />
-      <ReportCharts data={data} onDetails={setDetail} />
+      <ReportStats data={data} />
+      <ReportCharts key={`${period}-${trail}`} data={data} onDetails={setDetail} />
       <ReportOverview onDetails={setDetail} />
       <p className="flex items-center gap-2 text-xs leading-5 text-ink-500">
         <Info className="h-4 w-4 shrink-0" aria-hidden="true" />
-        Dados demonstrativos de 2024. Os indicadores do período selecionado ainda não são
-        sincronizados com as outras telas.
+        Dados demonstrativos · Referência 2024
       </p>
       {detail && (
         <CertificateDialog title={detailTitles[detail]} onClose={() => setDetail(null)}>
