@@ -31,9 +31,9 @@ export default function ReportOverview({
           eyebrow="Consistência que faz a diferença"
           onDetails={() => onDetails('status')}
         >
-          <div className="relative mx-auto mb-3 h-44 w-44">
+          <div className="relative mx-auto mb-4 h-48 w-48">
             <svg
-              viewBox="0 0 176 176"
+              viewBox="0 0 192 192"
               className="h-full w-full -rotate-90"
               role="img"
               aria-label={reportCourseStatus
@@ -41,12 +41,12 @@ export default function ReportOverview({
                 .join('; ')}
             >
               <circle
-                cx="88"
-                cy="88"
-                r="72"
-                fill="none"
+                cx="96"
+                cy="96"
+                r="62"
+                fill="var(--color-panel-alt)"
                 stroke="var(--color-ink-100)"
-                strokeWidth="12"
+                strokeWidth="1"
               />
               {reportCourseStatus.map((item, index) => {
                 const start =
@@ -56,26 +56,49 @@ export default function ReportOverview({
                 return (
                   <circle
                     key={item.label}
-                    cx="88"
-                    cy="88"
-                    r="72"
+                    cx="96"
+                    cy="96"
+                    r="80"
                     pathLength="100"
                     fill="none"
                     stroke={item.color}
-                    strokeWidth="12"
-                    strokeDasharray={`${(item.count / total) * 100 - 2} ${100 - (item.count / total) * 100 + 2}`}
+                    strokeWidth="18"
+                    strokeDasharray={`${(item.count / total) * 100} ${100 - (item.count / total) * 100}`}
                     strokeDashoffset={-start}
-                    strokeLinecap="round"
+                    strokeLinecap="butt"
+                  />
+                )
+              })}
+              {reportCourseStatus.map((item, index) => {
+                const angle =
+                  (reportCourseStatus.slice(0, index).reduce((sum, part) => sum + part.count, 0) /
+                    total) *
+                  Math.PI *
+                  2
+                return (
+                  <line
+                    key={item.label}
+                    x1={96 + 69 * Math.cos(angle)}
+                    y1={96 + 69 * Math.sin(angle)}
+                    x2={96 + 91 * Math.cos(angle)}
+                    y2={96 + 91 * Math.sin(angle)}
+                    stroke="var(--color-panel)"
+                    strokeWidth="4"
                   />
                 )
               })}
             </svg>
             <span className="absolute inset-0 flex flex-col items-center justify-center">
-              <strong className="text-4xl font-extrabold tracking-tight text-ink-900">
+              <span className="mb-1.5 text-[9px] font-bold uppercase tracking-[0.14em] text-ink-500">
+                Seu progresso
+              </span>
+              <strong className="flex items-baseline gap-0.5 text-[38px] font-extrabold leading-none tracking-[-0.04em] text-ink-900">
                 {Math.round((completed / total) * 100)}
-                <span className="text-xl text-ink-500">%</span>
+                <span className="text-lg font-semibold text-ink-500">%</span>
               </strong>
-              <span className="mt-1 text-[11px] text-ink-500">de conclusão</span>
+              <span className="mt-2 text-[10px] font-medium text-ink-500">
+                {completed} de {total} concluídos
+              </span>
             </span>
           </div>
           <ul className="flex flex-1 flex-col gap-3 px-5 pb-5 sm:px-6">
