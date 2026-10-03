@@ -9,6 +9,7 @@
     "lint": "oxlint",
     "test:avaliacoes": "node --experimental-strip-types --test tests/avaliacoes.test.mjs",
     "test:cursos": "node --experimental-strip-types --test tests/cursos.test.mjs",
+    "test:certificados": "node --experimental-strip-types --test tests/certificados.test.mjs",
     "preview": "vite preview"
   },
   "dependencies": {
